@@ -84,14 +84,14 @@ export default function SignIn() {
                             required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, password : e.target.value})} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
               {error &&  <p>{error}</p>}
-                <button type="submit" disabled={loading} className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading ? "sign in progress" : "sign in"}</button>
+                <button type="submit" disabled={loading} className='bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading ? "Login progress" : "Login "}</button>
 
-                <Link href="/forgot-password" className="text-textTitle hover:text-btn-primary">Forgotten your password?</Link>
+                <Link href="/auth/forgot-password" className="text-textTitle hover:text-btn-primary">Forgotten your password?</Link>
             </form>
 
             <div className="flex items-center  justify-center ">
                 <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[12px] ">Don't have an account yet?</h1> 
-                <Link href='/register' className=' text-[12px] w-fit text-btn-primary  font-[400]  hover:text-[#666666]'>create an account</Link>
+                <Link href='/auth/register' className=' text-[12px] w-fit text-btn-primary  font-[400]  hover:text-[#666666]'>create an account</Link>
             </div>
         </div>
         

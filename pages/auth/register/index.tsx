@@ -135,23 +135,19 @@ const Register = () => {
 <div className='flex flex-col justify-center items-center bg-white  gap-5 px-[30px] py-[20px] '>
     
     <form action="" onSubmit={signUpUser} className='flex flex-col w-full gap-2'>
-        <div className='flex flex-col justify-center  text-center gap-2 mb-[20px] '>
+        <div className='flex flex-col justify-center  text-start gap-2 mb-[20px] '>
             <h1 className='font-[700] text-[32px] leading-[39.97px] text-[#111111] '>Create Account</h1>
             <p className='font-[400] leading-[19.98px] text-[16px] text-[#333333] '>Have a login account</p>
         </div>
 <div className='flex flex-col gap-[4px]  w-full'>
-    <label htmlFor="firstName" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Firstname</label>
+    <label htmlFor="firstName" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Fullname</label>
     <input  name='firstName'
     value={formData.firstName}
                             onChange={handleChange}
                              type="text" required className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  '
                               />
 </div>
-<div className='flex flex-col gap-[4px]  w-full'>
-    <label htmlFor="LastName" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Lastname</label>
-    <input name='lastName' required value={formData.lastName}
-                            onChange={handleChange} type="text" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
-</div>
+
 <div className='flex flex-col gap-[4px]  w-full'>
     <label htmlFor="email" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Email</label>
     <input name='email' required value={formData.email}
@@ -167,8 +163,8 @@ const Register = () => {
     <input name='confirmPassword' required value={formData.confirmPassword}
                             onChange={handleChange} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
-<button   disabled={loading}  type='submit' className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '> {loading ? "Creating account..." : "Create an account"}</button>
-<div className="flex items-center  justify-center gap-2">
+<button   disabled={loading}  type='submit' className='bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '> {loading ? "Creating account..." : "Create an account"}</button>
+<div className="flex items-center   gap-2">
                     <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[15px] ">
                         Already have an Account?
                     </h1>
