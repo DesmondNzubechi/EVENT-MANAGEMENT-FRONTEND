@@ -13,28 +13,27 @@ export const HeroSection = () => {
   const { user } = useUserStore();
 
   return (
-    <div className="flex my-[50px] gap-[30px]  justify-around flex-col md:flex-row items-center">
+    <div className="flex my-[100px] gap-[30px]  justify-around flex-col md:flex-row items-center">
       <div className="md:max-w-[500px] flex flex-col gap-[10px] ">
         <h1 className="capitalize font-myfont  text-[30px] md:text-[50px] ">
-          Home of quality furniture
+        Seamlessly Plan. Perfectly Celebrate.
         </h1>
         <p className="md:text-[27px] text-[20px] font-fonty text-slate-700 ">
-          Welcome to HomeDecor , your one-stop shop for stylish furniture and
-          home decor
+        From intimate gatherings to grand celebrations, our platform makes event planning effortless and extraordinary.
         </p>
         <div className="flex gap-3">
           <Link
             href='/'
             className="bg-slate-900  w-fit px-[20px] py-[5px] rounded shadow-2xl text-[20px] hover:bg-green-500 active:bg-green-900 text-slate-200 "
           >
-            Explore
+            Explore Features
           </Link>
           {!user && (
             <Link
               href="/signup"
               className="bg-slate-500  w-fit px-[20px] py-[5px] rounded shadow-2xl text-[20px] border border-slate-400 hover:bg-green-500 active:bg-green-900 text-slate-50 "
             >
-              Get Started
+              Get Started Now
             </Link>
           )}
         </div>
