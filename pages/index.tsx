@@ -4,6 +4,7 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { HeroSection } from "@/components/HeroSection/HeroSection";
 import { Poppins } from "next/font/google";
+import { WhyChooseUs } from "@/components/WhyChooseUs/WhyChooseUs";
 
 export const poppins = Poppins({
   subsets: ['latin'],
@@ -17,9 +18,12 @@ export default function Home() {
     <MobileNav />
     <DesktopNav/>
   <main
-    className={`flex overflow-x-hidden flex-col items-center justify-between ${poppins.className}`}
-  > 
-      <HeroSection /> 
+    className={` overflow-x-hidden  ${poppins.className}`}
+      > 
+        <div className="px-[20px] ">
+        <HeroSection /> 
+        </div>
+        <WhyChooseUs/>
     </main>
     </>
   );

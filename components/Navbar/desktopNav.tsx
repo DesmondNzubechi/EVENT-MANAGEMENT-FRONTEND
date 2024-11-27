@@ -1,15 +1,5 @@
 import Link from "next/link";
-import { navType } from "../types/types"
-import { SiHomeassistantcommunitystore } from "react-icons/si";
-import { TbHomeSearch } from "react-icons/tb";
 import { FaCircleUser, FaHouse, FaXTwitter } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { HiXMark } from "react-icons/hi2";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { IoMdCall } from "react-icons/io";
-import { CiLocationOn } from "react-icons/ci";
 import { Poppins } from "next/font/google";
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
@@ -19,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUserStore } from "../store/store";
 import { TfiArrowCircleUp } from "react-icons/tfi";
+import { SiEventbrite } from "react-icons/si";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -27,7 +18,7 @@ export const poppins = Poppins({
 });
   
 export const DesktopNav = () => {
-    const {isAuthenticated, user} = useUserStore()
+    const { user} = useUserStore()
 
     const router = useRouter();
     const [pathname, setPathname] = useState('');
@@ -39,7 +30,7 @@ export const DesktopNav = () => {
     }, [router.isReady, router.pathname])
 
 
-    const navItems: navType[] = [ 
+    const navItems = [ 
         {
             name: "home",
             url : "/"
@@ -98,36 +89,36 @@ export const DesktopNav = () => {
                     transition: "ease-in .7s",
                     scrollBehavior : "smooth"
             }}
-                className={`bg-btn-primary fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-textTitle right-[20px] z-[2000000]`} />
+                className={`bg-btn-primary shadow-2xl fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-textTitle right-[20px] z-[2000000]`} />
            
             <div
                  style={{
                     transition: "ease-in .7s",
                     scrollBehavior : "smooth"
                   }}
-                className={`py-[10px]  px-[30px] flex flex-col gap-y-[10px] fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
+                className={`py-[10px]  px-[30px] flex flex-col gap-y-[10px] shadow fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-white" : "bg-white"} `}>
                
                 <div className="flex justify-between px-[50px] ">
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
-                <div className='flex items-center relative z-[10] gap-2'>
-     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
-<h1 className='text-[19.05px] uppercase leading-[21.43px] font-[700] text-[#FFFFFF] '>Home Features</h1>
+                <div className='flex items-center relative z-[10] gap-1'>
+     <span className='bg-slate-900 rounded-[3.89px] p-2'><SiEventbrite className='text-[#FFFFFF]  text-[10px] '/></span>
+                                <h1 className={`text-[19.05px] uppercase leading-[21.43px] font-[700] ${isScrolled? "text-blue-500": "text-blue-500"}  `}>UEvents</h1>
     </div>
                     </Link>
 
                     </div>
                  
                     <ul className=" flex flex-row items-center gap-5">
-                        {navItems.map((nav: navType, index: number) => (
+                        {navItems.map((nav: any, index: number) => (
                             <li key={index}>
-                                <Link className={`text-[15px]  ${pathname === nav.url? "text-btn-primary font-bold" : "text-light"} capitalize`} href={nav.url}>
+                                <Link className={`text-[15px]  text-slate-700 ${pathname === nav.url? "font-bold text-slate-900" : "text-slate-700"} capitalize`} href={nav.url}>
                                     {nav.name}
                                 </Link>
                             </li>
                         ))}
                     </ul>
-                    {isAuthenticated?  <div className="flex my-[20px] flex-row items-center gap-2">
+                    {user?  <div className="flex my-[20px] flex-row items-center gap-2">
                 <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                    
                 </div> :
@@ -135,7 +126,7 @@ export const DesktopNav = () => {
                         {/* <Link href='' className="flex text-[25px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary rounded text-primary text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-slate-900 rounded text-slate-50 text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
                         <Link href='/signin' className="text-[15px] rounded bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">

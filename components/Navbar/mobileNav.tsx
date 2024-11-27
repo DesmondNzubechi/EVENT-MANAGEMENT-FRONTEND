@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { navType } from "../types/types"
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
 import { FaHouse, FaXTwitter } from "react-icons/fa6";
@@ -26,8 +25,8 @@ export const poppins = Poppins({
 });
   
 export const MobileNav = () => {
-const {user, isAuthenticated} = useUserStore()
-    const navItems: navType[] = [
+    const { user } = useUserStore()
+    const navItems = [
         {
             name: "home",
             url : "/"
@@ -129,7 +128,7 @@ const {user, isAuthenticated} = useUserStore()
                     </div>  
                     <hr />
                     <ul className="bg-primaryBg flex flex-col gap-2">
-                        {navItems.map((nav: navType, index: number) => (
+                        {navItems.map((nav: any, index: number) => (
                             <li key={index}>
                                 <Link className="text-[15px] text-textColor capitalize" href={nav.url}>
                                     {nav.name}
@@ -138,7 +137,7 @@ const {user, isAuthenticated} = useUserStore()
                         ))}
                     </ul>
                     <hr />
-                   {isAuthenticated? <div>
+                   {user? <div>
                         <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                     </div> :
                     <div className="flex my-[20px] flex-col gap-2">
@@ -153,24 +152,8 @@ const {user, isAuthenticated} = useUserStore()
                             Login
                         </Link>
                     </div>}
-                    <hr />
-                    <div className="flex flex-col gap-2">
-                        <h1 className="font-bold">Follow Us On Social</h1>
-                        <div className="flex item-center gap-5">
-                            <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaXTwitter className="text-[15px]" />
-                            </Link>
-                            <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaLinkedinIn className="text-[15px]" />
-                            </Link>
-                            <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaFacebookF className="text-[15px]" />
-                            </Link>
-                            <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaInstagram className="text-[15px]" />
-                            </Link>
-                        </div>
-                    </div>
+                 
+                  
                 </div>
             </span>
         </nav>
