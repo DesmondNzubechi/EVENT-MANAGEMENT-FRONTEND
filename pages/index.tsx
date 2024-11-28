@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/HeroSection/HeroSection";
 import { Poppins } from "next/font/google";
 import { WhyChooseUs } from "@/components/WhyChooseUs/WhyChooseUs";
 import { Footer } from "@/components/Footer/footer";
+import { PopularEvents } from "@/components/popularEvents/popularEvents";
 
 export const poppins = Poppins({
   subsets: ['latin'],
@@ -24,7 +25,8 @@ export default function Home() {
         <div className="px-[20px] ">
         <HeroSection /> 
         </div>
-        <WhyChooseUs/>
+        <WhyChooseUs />
+        <PopularEvents/>
       </main>
       <Footer/>
     </>

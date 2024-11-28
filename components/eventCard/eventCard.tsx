@@ -1,26 +1,10 @@
 import Image from "next/image";
 import { IoLocationOutline } from "react-icons/io5";
+import { EventType } from "../types/types";
 
-interface EventType {
-  title: string;
-  description: string;
-  date: string;
-  price: number;
-  location: string;
-  totalTicket: number;
-  availableTicket: number;
-  image: string;
-}
 
-const EventCard = ({ events }: { events: EventType[] }) => {
+const EventCard = ({ event }: { event: EventType }) => {
   return (
-    <div className="grid md:grid-cols-4 gap-5 px-[20px] mt-[50px]">
-      {/* Example Side Navigation */}
-      <div className="col-span-1 hidden md:block">
-        {/* Add your Side Navigation Component Here */}
-      </div>
-      <div className="grid md:col-span-3 lg:grid-cols-3 py-[50px] pt-[100px] gap-[25px]">
-        {events.map((event) => (
           <div
             key={event.title}
             className="flex flex-col border shadow-lg gap-[10px] rounded-[10px] bg-[#FFFFFF] p-[15px]"
@@ -28,7 +12,7 @@ const EventCard = ({ events }: { events: EventType[] }) => {
             <Image
               src={event.image}
               alt={event.title}
-              className="rounded-[6px]"
+              className="rounded-[6px] w-full h-[200px]"
               width={300}
               height={200}
             />
@@ -71,9 +55,7 @@ const EventCard = ({ events }: { events: EventType[] }) => {
               </button>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
+       
   );
 };
 
