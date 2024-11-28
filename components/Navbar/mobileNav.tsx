@@ -86,7 +86,7 @@ export const MobileNav = () => {
                     transition: "ease-in .7s",
                     scrollBehavior : "smooth"
             }}
-                className={`bg-btn-primary fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-textTitle right-[20px] z-[2000000]`} />
+                className={` bg-blue-500 fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-blue-700 right-[20px] z-[2000000]`} />
             <div
                  style={{
                     transition: "ease-in 1s",

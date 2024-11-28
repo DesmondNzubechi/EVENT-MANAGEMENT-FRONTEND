@@ -5,6 +5,7 @@ import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { HeroSection } from "@/components/HeroSection/HeroSection";
 import { Poppins } from "next/font/google";
 import { WhyChooseUs } from "@/components/WhyChooseUs/WhyChooseUs";
+import { Footer } from "@/components/Footer/footer";
 
 export const poppins = Poppins({
   subsets: ['latin'],
@@ -24,7 +25,8 @@ export default function Home() {
         <HeroSection /> 
         </div>
         <WhyChooseUs/>
-    </main>
+      </main>
+      <Footer/>
     </>
   );
 }
