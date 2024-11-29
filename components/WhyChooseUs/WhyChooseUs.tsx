@@ -32,7 +32,7 @@ export const WhyChooseUs = () => {
         <div className="bg-transparent gap-[50px] py-[100px] px-[30px] flex flex-col items-center text-center">
               
 <div className='flex flex-col gap-5 justify-center mb-[50px] items-center text-center'>
-            <h2 className='bg-blue-500 text-white text-[15px] px-[20px] rounded-full  py-[10px] capitalize font-bold w-fit '>WHY CHOOSE US</h2>
+            <h2 className='bg-blue-300 text-white text-[15px] px-[20px] rounded-full  py-[10px] capitalize font-bold w-fit '>WHY CHOOSE US</h2>
             <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-textTitle ">Join Thousands of Happy Event Planners Today!</h1>
         </div>
             <div className="grid grid-cols-1 gap-[50px]  md:grid-cols-2 lg:grid-cols-3">

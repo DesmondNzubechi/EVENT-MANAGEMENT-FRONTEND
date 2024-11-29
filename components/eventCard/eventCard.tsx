@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { IoLocationOutline } from "react-icons/io5";
 import { EventType } from "../types/types";
+import EventModal from "../modals/eventModal";
+import { useState } from "react";
 
 
 const EventCard = ({ event }: { event: EventType }) => {
-  return (
+
+    const [modalVisible, setEventModalVisible] = useState<boolean>(false)
+
+    return (
+        <>
+           {modalVisible && <EventModal event={event} setEventModalVisible={setEventModalVisible}/>}
           <div
             key={event.title}
             className="flex flex-col border shadow-lg gap-[10px] rounded-[10px] bg-[#FFFFFF] p-[15px]"
@@ -49,13 +56,13 @@ const EventCard = ({ event }: { event: EventType }) => {
               </button>
               <button
                 className="bg-[#FFFFFF] border border-[#0000FF] rounded-[8px] py-[10px] px-[16px] text-[#0000FF] font-medium"
-                onClick={() => alert("View Event Details")}
+                onClick={() => setEventModalVisible(true)}
               >
                 View Details
               </button>
             </div>
           </div>
-       
+       </>
   );
 };
 
