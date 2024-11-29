@@ -36,16 +36,8 @@ export const DesktopNav = () => {
             url : "/"
         },
         {
-            name: "property",
-            url : "/properties"
-        },
-        {
-            name: "land",
-            url : "/land"
-        },
-        {
-            name: "blog",
-            url : "/blog"
+            name: "events",
+            url : "/events"
         },
         {
             name: "about",

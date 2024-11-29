@@ -27,8 +27,8 @@ export default function Home() {
         <HeroSection /> 
         </div>
         <WhyChooseUs />
-        <Reviews/>
         <PopularEvents/>
+        <Reviews/>
       </main>
       <Footer/>
     </>

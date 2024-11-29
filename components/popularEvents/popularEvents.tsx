@@ -8,7 +8,7 @@ export const PopularEvents = () => {
        
       <div className="py-[50px] px-[30px] ">
         <div className="flex flex-col gap-5 justify-center mb-[50px] items-center text-center">
-          <h2 className="bg-blue-300 text-white text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit ">
+          <h2 className="bg-blue-700 text-white text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit ">
             Events
           </h2>
           <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-slate-900 ">
