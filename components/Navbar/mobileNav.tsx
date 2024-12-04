@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SiHomeassistantcommunitystore } from "react-icons/si";
+import { SiEventbrite, SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
 import { FaHouse, FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -92,7 +92,7 @@ export const MobileNav = () => {
                     transition: "ease-in 1s",
                     scrollBehavior : "smooth"
                   }}
-                className={`py-[15px]  px-[30px] flex flex-col gap-y-[20px] fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
+                className={`py-[15px]  px-[30px] flex flex-col gap-y-[20px] fixed shadow left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
                {/* {!isScrolled && <> <div className="flex justify-around ">
                 <div className="flex items-center"><IoMdCall className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">+2347084183611</p></div>
                     <div className="flex items-center"><FaLocationDot className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">1A Denten Street, Ogui, Enugu.</p></div>
@@ -100,14 +100,14 @@ export const MobileNav = () => {
                 <hr /> </>}  */}
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
-                <div className='flex items-center relative z-[10] gap-2'>
-     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
-<h1 className='text-[19.05px] uppercase leading-[21.43px] font-[700] text-[#FFFFFF] '>Home Features</h1>
+                <div className='flex items-center relative z-[10] gap-1'>
+     <span className='bg-slate-900 rounded-[3.89px] p-2'><SiEventbrite className='text-[#FFFFFF]  text-[10px] '/></span>
+                                <h1 className={`text-[19.05px] uppercase leading-[21.43px] font-[700] ${isScrolled? "text-blue-500": "text-blue-500"}  `}>UEvents</h1>
     </div>
-                    </Link> 
+                    </Link>
                         {navState !== "left-[-2000px]" ?
-                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className=" text-[40px] bg-transparent  text-light p-2  hover:text-slate-200 "/> :
-                        <FaBarsStaggered onClick={() => setNavState('left-0')} className=" text-[40px] bg-transparent  text-light p-2  hover:text-slate-200 "/>}
+                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className={` text-[40px] bg-transparent ${!isScrolled? "text-slate-900": "text-light"}   p-2  hover:text-slate-200 `} /> :
+                        <FaBarsStaggered onClick={() => setNavState('left-0')} className={` text-[40px] bg-transparent  ${!isScrolled? "text-slate-900": "text-light"} p-2  hover:text-slate-200 `} />}
                    
                 </div>
             </div>
@@ -118,15 +118,17 @@ export const MobileNav = () => {
             }} style={{ transition: ".5s" }} className={`fixed z-[10000] min-h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
-                    <Link href='/' className='flex items-center relative z-[10] gap-2'>
-     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
-<h1 className='text-[19.05px] leading-[21.43px] font-[700] text-[#333333] '>Home Features</h1>
-    </Link>
+                    <Link href='/' className="flex  gap-1 items-center">
+                <div className='flex items-center relative z-[10] gap-1'>
+     <span className='bg-slate-900 rounded-[3.89px] p-2'><SiEventbrite className='text-[#FFFFFF]  text-[10px] '/></span>
+                                <h1 className={`text-[19.05px] uppercase leading-[21.43px] font-[700] ${isScrolled? "text-blue-500": "text-blue-500"}  `}>UEvents</h1>
+    </div>
+                    </Link>
                         {/* <button onClick={() => setNavState('left-[-2000px]')}>
                         <HiXMark className="bg-black-bg text-[40px]  hover:bg-slate-700 p-1 text-light"/>
                         </button> */}
                     </div>  
-                    <hr />
+                   
                     <ul className="bg-primaryBg flex flex-col gap-2">
                         {navItems.map((nav: any, index: number) => (
                             <li key={index}>
@@ -136,7 +138,7 @@ export const MobileNav = () => {
                             </li>
                         ))}
                     </ul>
-                    <hr />
+                   
                    {user? <div>
                         <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                     </div> :
@@ -145,7 +147,7 @@ export const MobileNav = () => {
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px] rounded ">
+                        <Link href='/register' className="bg-blue-700 text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px] rounded ">
                             Register
                         </Link>
                         <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] rounded px-[20px]">
