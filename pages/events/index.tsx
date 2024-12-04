@@ -1,4 +1,5 @@
 import EventCard from "@/components/eventCard/eventCard";
+import { Footer } from "@/components/Footer/footer";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { events } from "@/components/theEvents/theEvents";
@@ -29,7 +30,8 @@ const Events = () => {
          <EventCard event={event}/>
         ))}
       </div>
-            </div>
+        </div>
+        <Footer/>
             </>
   );
 };
