@@ -111,17 +111,17 @@ export const DesktopNav = () => {
                         ))}
                     </ul>
                     {user?  <div className="flex my-[20px] flex-row items-center gap-2">
-                <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
+                <Link href='/auth/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                    
                 </div> :
                     <div className="flex my-[20px] flex-row items-center gap-2">
                         {/* <Link href='' className="flex text-[25px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                         </Link> */}
-                        <Link href='/register' className="bg-slate-900 rounded text-slate-50 text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
+                        <Link href='/auth/register' className="bg-slate-900 rounded text-slate-50 text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
-                        <Link href='/signin' className="text-[15px] rounded bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
+                        <Link href='/auth/signin' className="text-[15px] rounded bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
                             Login
                         </Link>
                     </div>}

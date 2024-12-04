@@ -147,10 +147,10 @@ export const MobileNav = () => {
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link> */}
-                        <Link href='/register' className="bg-blue-700 text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px] rounded ">
+                        <Link href='/auth/register' className="bg-blue-700 text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px] rounded ">
                             Register
                         </Link>
-                        <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] rounded px-[20px]">
+                        <Link href='/auth/signin' className="text-[15px] text-center border py-[5px] w-[150px] rounded px-[20px]">
                             Login
                         </Link>
                     </div>}
