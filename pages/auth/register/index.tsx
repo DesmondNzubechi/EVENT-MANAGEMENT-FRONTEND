@@ -168,7 +168,7 @@ const Register = () => {
                     <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[15px] ">
                         Already have an Account?
                     </h1>
-                    <Link href='/signin' className=' text-[15px] w-fit text-btn-primary  py-[15px] font-[400]  hover:text-[#666666]'>
+                    <Link href='/auth/signin' className=' text-[15px] w-fit text-btn-primary  py-[15px] font-[400]  hover:text-[#666666]'>
                         Sign in
                     </Link> 
                 </div>

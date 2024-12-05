@@ -75,7 +75,7 @@ export default function ResetPassword() {
     <input name='password'  value={confirmPassword} onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
                
-                <button type='submit' disabled={loading} className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Reseting password" : 'Reset Password'}</button>
+                <button type='submit' disabled={loading} className='bg-blue-700 py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Reseting password" : 'Reset Password'}</button>
             </form>
         </div>
        

@@ -67,7 +67,7 @@ export default function ForgotPassword() {
     <input name='email'  value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} type="email" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
             
-                <button type="submit" disabled={loading} className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Submitting..." : "Submit email"}</button>
+                <button type="submit" disabled={loading} className='bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Submitting..." : "Submit email"}</button>
 
                 <Link href="/signin" className="text-textTitle hover:text-btn-primary">Remember password?</Link>
             </form>
