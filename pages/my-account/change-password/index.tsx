@@ -115,9 +115,9 @@ export default function AccountDetails() {
         <ProfileSideNavBar />
  
         <div className="  p-4 lg:col-span-3">
-          {/* <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
-            Change password
-          </h1> */}
+          <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
+            Change my password
+          </h1>
 
           {/* User Avatar and Buttons */}
           <div

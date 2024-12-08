@@ -41,7 +41,7 @@ const ProfileSideNavBar = () => {
     },
     {
       name: "Booked Events",
-      link: "/profile/booked-events",
+      link: "/my-account/my-bookings",
       icon: MdPayment,
     },
    

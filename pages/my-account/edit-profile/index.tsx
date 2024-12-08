@@ -81,11 +81,11 @@ export default function AccountDetails() {
     <>
       <DesktopNav/>
       <MobileNav/>
-      <div className="grid grid-cols-1 my-[100px] gap-[30px] lg:grid-cols-4 px-[20px] ">
+      <div className="grid grid-cols-1 my-[150px] gap-[30px] lg:grid-cols-4 px-[20px] ">
         <ProfileSideNavBar />
         <div className="  p-4 lg:col-span-3">
           <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
-           My profile
+          edit My profile
           </h1>
 
           {/* User Avatar and Buttons */}
@@ -94,7 +94,7 @@ export default function AccountDetails() {
               isEditable ? "bg-[#CBCAC74D] border-[1px] " : "bg-[#F4F2EF4D]"
             } `}
           >
-            <div className="flex items-center justify-between mb-6">
+            {/* <div className="flex items-center justify-between mb-6">
             <div className="items-center flex relative">
                                 <Image
                                     src={
@@ -124,7 +124,7 @@ export default function AccountDetails() {
                                     <MdEdit className="bg-secondaryBg border text-btn-primary rounded-full" />
                                 </label>
                             </div>
-            </div>
+            </div> */}
 
             {/* User Information Section */}
             <div className="  p-4 ">
