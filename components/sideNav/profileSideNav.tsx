@@ -26,39 +26,25 @@ const ProfileSideNavBar = () => {
   const profileLinks = [
     {
       name: "Account details",
-      link: "/profile",
+      link: "/my-account",
+      icon: LiaUserEditSolid,
+    },
+    {
+      name: "Edit profile",
+      link: "/my-account/edit-profile",
       icon: LiaUserEditSolid,
     },
     {
       name: "Change Password",
-      link: "/profile/change-password",
+      link: "/my-account/change-password",
       icon: RiLockPasswordFill,
     },
     {
-      name: "KYC",
-      link: "/profile/kyc",
-      icon: PiUserSquareBold,
+      name: "Booked Events",
+      link: "/profile/booked-events",
+      icon: MdPayment,
     },
-    {
-      name: "Message",
-      link: "/profile/message",
-      icon: MdOutlineMessage,
-    },
-    // {
-    //   name: "Billing method",
-    //   link: "/profile/billing-method",
-    //   icon: MdPayment,
-    // },
-    {
-      name: "Settings",
-      link: "/profile/settings",
-      icon: IoSettingsOutline,
-    },
-    {
-      name: "Security",
-      link: "/profile/security",
-      icon: CiLock,
-    },
+   
   ];
 
   return (
@@ -76,7 +62,7 @@ const ProfileSideNavBar = () => {
               href={link.link}
               className={`flex items-center gap-2 font-[500] py-[20px] ${
                 link.link === pathname && pathname.includes(link.link)
-                  ? "text-[#1A1A1A]    border-r-[4px] border-[#FD830D]  "
+                  ? "text-[#1A1A1A]    border-r-[4px] border-[#0000FF]  "
                   : "text-[#666666]  border-r-[4px] border-gray "
               } px-[10px]  cursor-pointer   hover:text-black`}
             >
@@ -85,7 +71,7 @@ const ProfileSideNavBar = () => {
             </Link>
           );
         })}
-          <button onClick={() => setLogOut(true)}>  <li className="text-slate-50 w-fit px-[20px] py-[10px] hover:bg-red-700 rounded font-[400] gap-[10px] text-[16px] bg-red-500 leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</li></button>
+          <button onClick={() => setLogOut(true)} className=" border-r-[4px] border-gray">  <li className="text-red-700 w-fit px-[20px] py-[10px] hover:text-red-900 rounded font-[400] gap-[10px] text-[16px]  leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</li></button>
       </ul>
       </div>
       </>

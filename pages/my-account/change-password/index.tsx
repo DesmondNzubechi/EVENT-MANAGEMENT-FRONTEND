@@ -111,13 +111,13 @@ export default function AccountDetails() {
       )}
      <DesktopNav/>
       <MobileNav/>
-      <div className="grid grid-cols-1 my-[100px] gap-[50px] lg:grid-cols-4 px-[20px] ">
+      <div className="grid grid-cols-1 my-[150px] gap-[50px] lg:grid-cols-4 px-[20px] ">
         <ProfileSideNavBar />
  
         <div className="  p-4 lg:col-span-3">
-          <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
+          {/* <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
             Change password
-          </h1>
+          </h1> */}
 
           {/* User Avatar and Buttons */}
           <div
@@ -133,9 +133,7 @@ export default function AccountDetails() {
                 <h2 className="text-[16px] text-[#404040] leading-[19.2px] font-[500]">
                 Password Change
                 </h2>
-                <button onClick={sendResetToken} type="button" className="bg-[#359BFD] text-[14px] leading-[16.41px] font-[500] text-[#FFFFFF] py-[8px] px-[14px] rounded-[5px] ">
-                    Request Reset Token
-                  </button>
+        
               </div>
 
               {/* Form Fields */}
@@ -150,13 +148,14 @@ export default function AccountDetails() {
                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
                        setResetToken(e.target.value)
                      }
-                     type="text"
+                     type="password"
                     
                      className={`w-full p-[12px] border-[0.5px]   rounded-[6px] 
                       bg-[#FFFFFF] border-[0.5px] outline-0`}
                   />
                 </div>
 
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div className="flex flex-col gap-[10px] relative">
                   <label className="block uppercase text-[#404040] leading-[11.72px] font-[500] text-[10px] ">
                     Password
@@ -210,9 +209,10 @@ export default function AccountDetails() {
                       )}
                     </button>
                   </div>
+                </div>
                 
 
-                <button type="submit" className="bg-[#FD830D] text-white font-[500] py-[10px] px-[24px] w-fit rounded-[8px]  ">
+                <button type="submit" className="bg-[#0000FF] text-white font-[500] py-[10px] px-[24px] w-fit rounded-[8px]  ">
                   Save Change
                 </button>
               </form>
