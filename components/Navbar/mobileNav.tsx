@@ -2,12 +2,12 @@ import Link from "next/link";
 import { SiEventbrite, SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
 import { FaHouse, FaXTwitter } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn, FaUser } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { IoMdCall } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp, IoMdCall } from "react-icons/io";
 import { Poppins } from "next/font/google";
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
@@ -17,6 +17,18 @@ import logo from '../../public/images/logo2.png';
 import Image from "next/image";
 import { FaCircleUser } from "react-icons/fa6";
 import { TfiArrowCircleUp } from "react-icons/tfi";
+import { useRouter } from "next/router";
+import { CiLock } from "react-icons/ci";
+import { IoSettingsOutline } from "react-icons/io5";
+
+import { LiaUserEditSolid } from "react-icons/lia";
+import { MdDashboard, MdLogout, MdOutlineMessage, MdPayment } from "react-icons/md";
+import { PiUserSquareBold } from "react-icons/pi";
+import { RiLockPasswordFill } from "react-icons/ri";
+
+import { LogOut } from "../logOut/loagOut";
+import { TbBrandBooking } from "react-icons/tb";
+
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -80,6 +92,37 @@ export const MobileNav = () => {
     window.scrollTo({ top: 0, behavior : "smooth"})
   }
 
+
+  const profileLinks = [
+    {
+      name: "Dashboard",
+      link: "/my-account",
+      icon: MdDashboard,
+    },
+    {
+      name: "Edit profile",
+      link: "/my-account/edit-profile",
+      icon: LiaUserEditSolid,
+    },
+    {
+      name: "Change Password",
+      link: "/my-account/change-password",
+      icon: RiLockPasswordFill,
+    },
+    {
+      name: "Booked Events",
+      link: "/my-account/my-bookings",
+      icon: TbBrandBooking,
+    },
+   
+    ];
+    
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const toggleProfile = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+    
     return (
         <nav className={`${poppins.className} lg:hidden relative z-[10000]`}>
             <TfiArrowCircleUp onClick={scrollToTop} style={{
@@ -139,9 +182,26 @@ export const MobileNav = () => {
                         ))}
                     </ul>
                    
-                   {user? <div>
-                        <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
-                    </div> :
+                    {user ? 
+                        <div>
+                    <li>
+              <button onClick={toggleProfile} className="flex items-center w-full focus:outline-none">
+                <FaUser className="mr-3" />
+                <span>Profile</span>
+                {isProfileOpen ? <IoIosArrowUp className="ml-auto" /> : <IoIosArrowDown className="ml-auto" />}
+              </button>
+              {isProfileOpen && (
+                <ul className="ml-6 mt-2 space-y-2">
+                  {
+                    profileLinks.map(pro => {
+                      return  <Link href={`${pro.link}`} className="flex items-center gap-[10px] "><pro.icon className="text-[16px] text-[#FFFFFFB2] "/> <span className="text-[#FFFFFFB2] font-[400] text-[16px] leading-[18.75px]  ">{pro.name}</span> </Link>
+                    })
+                  }
+                 
+                  <li className="text-red-500 font-[400] gap-[10px] text-[16px] leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</li>
+                </ul>
+              )}
+            </li></div> :
                     <div className="flex my-[20px] flex-col gap-2">
                         {/* <Link href='' className="flex text-[15px] items-center">
                             <TbHomeSearch className="text-[20px]" />
@@ -153,11 +213,12 @@ export const MobileNav = () => {
                         <Link href='/auth/signin' className="text-[15px] text-center border py-[5px] w-[150px] rounded px-[20px]">
                             Login
                         </Link>
-                    </div>}
-                 
+                    </div> }
+                  
                   
                 </div>
             </span>
         </nav>
+
     )
 }
