@@ -3,28 +3,26 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { FiEdit, FiEye, FiEyeOff } from "react-icons/fi";
 import userImg from "../../../public/IMAGES/user.jpg";
 import { RxPencil1 } from "react-icons/rx";
-import { Footer } from "@/components/Footer/Footer";
-import { SignedInMobileNav } from "@/components/Navbar/signedInMobileNav";
-import SignedInDesktopNav from "@/components/Navbar/signedInDesktopNav";
 import ProfileSideNavBar from "@/components/sideNav/profileSideNav";
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
-import { theUserType } from "@/components/types/types";
-import { apiEndpoint } from "@/components/lib/api";
+
+import { api} from "@/components/lib/api";
 import { toast } from "react-toastify";
 import { HashLoader } from "react-spinners";
+import { DesktopNav } from "@/components/Navbar/desktopNav";
+import { MobileNav } from "@/components/Navbar/mobileNav";
+import { Footer } from "@/components/Footer/footer";
 
 export default function AccountDetails() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [resetToken, setResetToken] = useState<string>("");
-  const { token, user, clearUser } = useUserStore();
+
   const router = useRouter();
   const [isEditable, setIsEditable] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [userInfo, setUserInfo] = useState<theUserType | null>(
-    user ? { ...user, name: user.name ?? "" } : null
-  );
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -45,7 +43,7 @@ export default function AccountDetails() {
 
       try {
        
-          await apiEndpoint.post('/auth/reset_password', { email : user?.email })
+          await api.post('/auth/reset_password', { email : "user?.email" })
            
           toast.success("Rest token has been sent to your email. Kindly check")
       } catch (error) {
@@ -84,7 +82,7 @@ export default function AccountDetails() {
 
     setLoading(true);
     try {
-      await apiEndpoint.post(`/auth/change_password`, {
+      await api.post(`/auth/change_password`, {
         password: password,
         password_confirmation: confirmPassword,
         remember_token: resetToken,
@@ -101,8 +99,8 @@ export default function AccountDetails() {
   };
 
   useEffect(() => {
-    if (!token || !user) router.push("/signin");
-  }, [token, user]);
+  
+  }, []);
 
   return (
     <>
@@ -111,8 +109,8 @@ export default function AccountDetails() {
           <HashLoader color="#FD830D" size={100} />
         </div>
       )}
-      <SignedInMobileNav />
-      <SignedInDesktopNav />
+     <DesktopNav/>
+      <MobileNav/>
       <div className="grid grid-cols-1 my-[100px] gap-[50px] lg:grid-cols-4 px-[20px] ">
         <ProfileSideNavBar />
  
@@ -144,7 +142,7 @@ export default function AccountDetails() {
               <form onSubmit={changePassword} className="flex flex-col gap-[20px] ">
                 <div className="flex flex-col gap-[10px] ">
                   <label className="block uppercase text-[#404040] leading-[11.72px] font-[500] text-[10px] ">
-                    Reset Token
+                 Current Password
                   </label>
                   <input
                      name="resetToken"
