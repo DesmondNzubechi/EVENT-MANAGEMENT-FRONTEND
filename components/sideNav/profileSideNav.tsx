@@ -5,11 +5,12 @@ import { CiLock } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
 
 import { LiaUserEditSolid } from "react-icons/lia";
-import { MdLogout, MdOutlineMessage, MdPayment } from "react-icons/md";
+import { MdDashboard, MdLogout, MdOutlineMessage, MdPayment } from "react-icons/md";
 import { PiUserSquareBold } from "react-icons/pi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useUserStore } from "../store/store";
 import { LogOut } from "../logOut/loagOut";
+import { TbBrandBooking } from "react-icons/tb";
 
 const ProfileSideNavBar = () => {
   const router = useRouter();
@@ -25,9 +26,9 @@ const ProfileSideNavBar = () => {
 
   const profileLinks = [
     {
-      name: "Account details",
+      name: "Dashboard",
       link: "/my-account",
-      icon: LiaUserEditSolid,
+      icon: MdDashboard,
     },
     {
       name: "Edit profile",
@@ -42,7 +43,7 @@ const ProfileSideNavBar = () => {
     {
       name: "Booked Events",
       link: "/my-account/my-bookings",
-      icon: MdPayment,
+      icon: TbBrandBooking,
     },
    
   ];
