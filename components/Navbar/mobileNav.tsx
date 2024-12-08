@@ -182,26 +182,26 @@ export const MobileNav = () => {
                         ))}
                     </ul>
                    
-                    {user ? 
-                        <div>
-                    <li>
-              <button onClick={toggleProfile} className="flex items-center w-full focus:outline-none">
+                    {!user ? 
+                        <div className="w-fit">
+                   
+              <button onClick={toggleProfile} className="flex w-fit items-center w-full focus:outline-none">
                 <FaUser className="mr-3" />
-                <span>Profile</span>
+                <div>Profile</div>
                 {isProfileOpen ? <IoIosArrowUp className="ml-auto" /> : <IoIosArrowDown className="ml-auto" />}
               </button>
               {isProfileOpen && (
                 <ul className="ml-6 mt-2 space-y-2">
                   {
                     profileLinks.map(pro => {
-                      return  <Link href={`${pro.link}`} className="flex items-center gap-[10px] "><pro.icon className="text-[16px] text-[#FFFFFFB2] "/> <span className="text-[#FFFFFFB2] font-[400] text-[16px] leading-[18.75px]  ">{pro.name}</span> </Link>
+                      return  <Link href={`${pro.link}`} className="flex items-center gap-[10px] "><pro.icon className="text-[16px] text-slate-700 "/> <span className="text-slate-700 font-[400] text-[16px] leading-[18.75px]  ">{pro.name}</span> </Link>
                     })
                   }
                  
                   <li className="text-red-500 font-[400] gap-[10px] text-[16px] leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</li>
                 </ul>
               )}
-            </li></div> :
+            </div> :
                     <div className="flex my-[20px] flex-col gap-2">
                         {/* <Link href='' className="flex text-[15px] items-center">
                             <TbHomeSearch className="text-[20px]" />
