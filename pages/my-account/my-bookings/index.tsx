@@ -62,23 +62,37 @@ export default function AccountDetails() {
   const data = [
     {
       id: "#0023",
-      propertyName: "Ethan's Grove",
-      billingTo: "Chike Golden",
-      amount: "₦50,000,000",
-      date: "March 10, 2024, 10:30AM",
-      paymentType: "Payment plan",
-      status: "In progress",
+      eventName: "Tech Submit",
+      eventDate:"Dec 24, 2024, 10:30AM",
+      ticketPrice: "₦50,000",
+      date: "Aug 10, 2024, 10:30AM",
+      status: "Confirmed",
     },
     {
       id: "#0023",
-      propertyName: "Ethan's Grove",
-      billingTo: "Chike Golden",
-      amount: "₦50,000,000",
-      date: "March 10, 2024, 10:30AM",
-      paymentType: "Outright payment",
-      status: "Completed",
+      eventName: "Tech Submit",
+      eventDate:"Dec 24, 2024, 10:30AM",
+      ticketPrice: "₦50,000",
+      date: "Aug 10, 2024, 10:30AM",
+      status: "Pending",
     },
-    // More data here...
+    {
+      id: "#0023",
+      eventName: "Tech Submit",
+      eventDate:"Dec 24, 2024, 10:30AM",
+      ticketPrice: "₦50,000",
+      date: "Aug 10, 2024, 10:30AM",
+      status: "Confirmed",
+    },
+    {
+      id: "#0023",
+      eventName: "Tech Submit",
+      eventDate:"Dec 24, 2024, 10:30AM",
+      ticketPrice: "₦50,000",
+      date: "Aug 10, 2024, 10:30AM",
+      status: "Pending",
+    },
+  
   ];
 
   const changePassword = async (e: any) => {
@@ -165,16 +179,16 @@ export default function AccountDetails() {
 
                     {order.id}
                     </td>
-                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.propertyName}</td>
-                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.billingTo}</td>
-                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.amount}</td>
+                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.eventName}</td>
+                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.eventDate}</td>
+                    <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.ticketPrice}</td>
                     <td className="p-[10px] text-[14px] text-[#1A1A1A] ">{order.date}</td>
                     <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                       <span
-                        className={`py-[4px] px-[12px] rounded-[10px] text-sm ${
-                          order.status === "Completed"
+                        className={`py-[4px] px-[12px] rounded-[5px] text-sm ${
+                          order.status === "Confirmed"
                             ? "bg-[#CFFFE691] text-[#0BD36D] "
-                            : "bg-[#CFE7FF66] text-[#0B70D3] "
+                            : "bg-red-100 text-red-700 "
                         }`}
                       >
                         {order.status}
