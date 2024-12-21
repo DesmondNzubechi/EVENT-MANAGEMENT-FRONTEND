@@ -1,76 +1,129 @@
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import signImg from '../../public/images/login1.avif'
-import Image from "next/image";
 import React, { useState } from "react";
 import { api } from "@/components/lib/api";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import { AuthPage } from "@/components/authPage/authPage";
+import { useRouter } from "next/router";
+import { useEmailStore, useUserStore } from "@/components/store/store";
+import { AxiosError } from "axios";
+import { Error } from "mongoose";
 
 export default function VerifyEmail() {
-
-
-    const [verificationCode, setVerificationCode] = useState<string>('')
-    const [error, setError] = useState<string>('')
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const validateForm = () => {
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(verificationCode)) {
-            setError("Please provide a valid email address")
-            return false
-        }
-
-        return true;
+  const { providedEmail } = useEmailStore();
+  const [verificationCode, setVerificationCode] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingResend, setLoadingResend] = useState<boolean>(false);
+  const router = useRouter();
+console.log("The email", providedEmail)
+  const verifyUserEmail = async (e: any) => {
+    e.preventDefault();
+    if (
+      !verificationCode ||
+      verificationCode.length < 4 ||
+      verificationCode.length > 4
+    ) {
+      setError("please provide a valid verification code sent to your email");
+      return;
     }
 
-    const forgotPasswordFn = async (e: any) => {
-        e.preventDefault()
-        if (!validateForm) {
-            return;
-        }
+    setLoading(true);
 
-        if (!verificationCode) {
-            setError("please provide the verification code sent to your email");
-            return;
-        }
+    try {
+      await api.patch("/auth/verifyEmail", { verificationCode });
 
-        setLoading(true);
- 
-
-        try {
-         
-            await api.post('/user/forgotPassword', { verificationCode })
-            
-            toast.success("Rest password link has been sent to your. Kindly check")
-            setLoading(false)
-        } catch (error) {
-            
-            toast.error("An error occured. Please try again")
-            setLoading(false)
-        }
-
+      toast.success("Email successfully verified. Kindly login now");
+      router.push("/auth/signin");
+    } catch (error: any) {
+        console.log("The verification error", error)
+        const theErr = error!.response?.data?.message
+      toast.error(theErr);
+    } finally {
+        setLoading(false);
     }
-     
-    return <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
-   <AuthPage/>
-        <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
-            <div className='flex flex-col justify-center  text-center gap-2 mb-[20px] '>
-                <h1 className='font-[700] text-[32px] leading-[39.97px] text-[#111111] '>Forgot password</h1>
-               <p className='font-[400] leading-[19.98px] text-[16px] text-[#333333] '>Submit your email. a reset password link will be sent to the email provided</p>
-            </div>
-            <form onSubmit={forgotPasswordFn} className="flex flex-col gap-5">
-            <div className='flex flex-col gap-[4px]  w-full'>
-    <label htmlFor="verificationCode" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>verificationCode</label>
-    <input name='verificationCode'  value={verificationCode} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setVerificationCode(e.target.value)} type="number" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
-</div>
-            
-                <button type="submit" disabled={loading} className='bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Verifying..." : "Verify email"}</button>
+  };
 
-                <Link href="/signin" className="text-textTitle hover:text-btn-primary">Remember password?</Link>
-            </form>
+  const resendVerificationToken = async (e: any) => {
+    e.preventDefault();
+
+    setLoadingResend(true);
+
+    try {
+      await api.patch(
+        "/auth/sendVerificationCode",
+        { email: providedEmail }
+      );
+
+      toast.success(
+        "Verification code successfully resent. Kindly check your email"
+      );
+    } catch (error) {
+        toast.error("An error occured. Please try again");
+        console.log(error, "The error is here")
+    } finally {
+      setLoadingResend(false);
+    }
+  };
+
+  return (
+    <div className="grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  ">
+      <AuthPage />
+      <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
+        <div className="flex flex-col justify-center  text-center gap-2 mb-[20px] ">
+          <h1 className="font-[700] text-[32px] leading-[39.97px] text-[#111111] ">
+            Verify email
+          </h1>
+          <p className="font-[400] leading-[19.98px] text-[16px] text-[#333333] ">
+            Kindly used the verification code sent to your email to verify your
+            email
+          </p>
         </div>
+        <form onSubmit={verifyUserEmail} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-[4px]  w-full">
+            <label
+              htmlFor="verificationCode"
+              className="text-[16px] font-[400] text-[#666666] leading-[19.98px] "
+            >
+              Verification Code
+            </label>
+            <input
+              name="verificationCode"
+                          value={verificationCode}
+                          maxLength={4}
+                          minLength={4}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setVerificationCode(e.target.value)
+              }
+              type="number"
+              className="border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  "
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center "
+          >
+            {loading ? "Verifying..." : "Verify email"}
+          </button>
+          <div className="flex flex-col md:flex-row items-center w-full gap-5">
+            <Link
+              href="/auth/signin"
+              className="text-textTitle text-center w-full p-2 rounded border "
+            >
+              Verify Later
+            </Link>
+            <button
+              type="button"
+              disabled={loadingResend}
+              onClick={resendVerificationToken}
+              className=" rounded w-full   text-slate-50 bg-slate-900 p-2 border font-[400] text-[16px] text-center "
+            >
+              {loadingResend ? "resending code" : "Resend code"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  );
 }

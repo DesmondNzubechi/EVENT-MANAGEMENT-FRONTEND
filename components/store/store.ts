@@ -13,12 +13,33 @@ export const useUserStore = create(
   persist<userState>(
     (set: any) => ({
       user: null,
-      token: null,
-      setUser: (user:any) => set({ user }),
+      setUser: (user: any) => set({ user }),
       clearUser: () => set({ user: null, token: null }),
     }),
     {
-      name: "user", // Key for localStorage
+      name: "user",
+    
     }
   )
 );
+
+
+interface emailState {
+  providedEmail: string
+  setProvidedEmail: (providedEmail: emailState['providedEmail']) => void
+}
+
+// Persisted User Store
+export const useEmailStore = create(
+  persist<emailState>(
+    (set: any) => ({
+      providedEmail: '',
+      setProvidedEmail: (providedEmail: string) => set({providedEmail}),
+    }),
+    {
+      name: "providedEmail",
+    
+    }
+  )
+);
+

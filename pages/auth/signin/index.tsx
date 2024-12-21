@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { api } from "@/components/lib/api";
 import { ChangeEvent, useState } from "react";
-import { loginDetail } from "@/components/types/types";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BounceLoader} from "react-spinners";
 import { AuthPage } from "@/components/authPage/authPage";
+import { useEmailStore } from "@/components/store/store";
 
 export default function SignIn() {
     const router = useRouter();
+    const {setProvidedEmail} = useEmailStore()
     console.log(process.env.NEXT_PUBLIC_API_URL)
-    const [userLoginDetail, setUserLoginDetail] = useState<loginDetail>({
+    const [userLoginDetail, setUserLoginDetail] = useState<any>({
         email: '',
         password : ''
     })
@@ -45,8 +46,8 @@ export default function SignIn() {
  
         setLoading(true)
         try {
-            const response = await api.post('/user/login', {email: userLoginDetail.email, password: userLoginDetail.password}, { withCredentials: true });
-
+            const response = await api.post('/auth/login', {email: userLoginDetail.email, password: userLoginDetail.password}, { withCredentials: true });
+            setProvidedEmail(userLoginDetail.email);
             router.push('/my-account');
             toast.success("Login successful")
         } catch (error ) {
