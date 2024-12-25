@@ -17,67 +17,6 @@ import DashboardMain from "@/components/dashboard/dashboard";
 export default function AccountDetails() {
 
   const router = useRouter();
-  const [isEditable, setIsEditable] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [myPic, setMyPic] = useState<string | undefined>(undefined)
-  const [userInfo, setUserInfo] = useState<any>(
-  );
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleEditClick = () => {
-    setIsEditable(!isEditable); // Toggle between read-only and editable
-  };
-
-   
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-           
-    const file = e.target.files?.[0];
-    if (file) {
-      setFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          setMyPic(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
-          }
-          
-  };
-  
-            
-      
-      const handleFileUpload = async () => {
-              
-      if (!file) return;
-  
-      const formData = new FormData();
-      formData.append("images", file);
-  
-              try {
-          
-       await api.patch(
-              `/user/updateProfilePic/${"user?._id"}`,
-           formData,
-           {
-              headers: { "Content-Type": "multipart/form-data"},
-              withCredentials: true
-           });
-                  
-          toast.success("Profile picture updated successfully");
-              } catch (error) {
-                   
-                  toast.error("An error occurred during profile picture update");
-                  
-      }
-  };
-  
-
   return (
     <>
       <DesktopNav/>
