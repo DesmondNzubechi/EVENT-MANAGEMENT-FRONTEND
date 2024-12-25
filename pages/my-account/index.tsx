@@ -13,12 +13,17 @@ import { MdEdit } from "react-icons/md";
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
 import DashboardMain from "@/components/dashboard/dashboard";
+import SignIn from "../auth/signin";
  
 export default function AccountDetails() {
+  const {user} = useUserStore()
 
   const router = useRouter();
   return (
+
     <>
+      { !user? <SignIn/>:
+      <div>
       <DesktopNav/>
       <MobileNav/>
       <div className="grid grid-cols-1 my-[150px] gap-[30px] lg:grid-cols-4 px-[20px] ">
@@ -33,7 +38,9 @@ export default function AccountDetails() {
         </div>
       </div>
 
-      <Footer />
+        <Footer />
+        
+      </div>}
     </>
   );
 }

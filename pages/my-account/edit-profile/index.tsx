@@ -12,15 +12,17 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { MdEdit } from "react-icons/md";
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
+import { userType } from "@/components/types/types";
  
 export default function AccountDetails() {
 
   const router = useRouter();
   const [isEditable, setIsEditable] = useState(false);
+  const { user} = useUserStore();
   const [showPassword, setShowPassword] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [myPic, setMyPic] = useState<string | undefined>(undefined)
-  const [userInfo, setUserInfo] = useState<any>(
+  const [userInfo, setUserInfo] = useState<userType | null>(user
   );
 
   const togglePasswordVisibility = () => {
@@ -152,12 +154,12 @@ export default function AccountDetails() {
                     </label>
                     <input
                       type="text"
-                      value={userInfo?.first_name}
+                      value={userInfo?.fullName}
                       onChange={(e) => {
                         if (userInfo) {
                           setUserInfo({
                             ...userInfo,
-                            first_name: e.target.value,
+                            fullName: e.target.value,
                           });
                         }
                       }}

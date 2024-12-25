@@ -35,27 +35,6 @@ export default function AccountDetails() {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const sendResetToken = async (e: any) => {
-      e.preventDefault()
-
-      setLoading(true);
-
-
-      try {
-       
-          await api.post('/auth/reset_password', { email : "user?.email" })
-           
-          toast.success("Rest token has been sent to your email. Kindly check")
-      } catch (error) {
-          
-          toast.error("An error occured. Please try again")
-         
-      } finally {
-        setLoading(false)
-      }
-
-  }
-
   const changePassword = async (e: any) => {
     e.preventDefault();
 
@@ -91,7 +70,7 @@ export default function AccountDetails() {
       toast.success("Password change succesful. Please login again");
       setLoading(false);
 
-      router.push("/signin");
+      router.push("/auth/signin");
     } catch (error) {
       toast.error("An error occured. Please try again");
       setLoading(false);

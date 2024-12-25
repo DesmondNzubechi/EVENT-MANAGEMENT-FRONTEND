@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BounceLoader } from "react-spinners";
 import { AuthPage } from "@/components/authPage/authPage";
-import { useEmailStore } from "@/components/store/store";
+import { useEmailStore, useUserStore } from "@/components/store/store";
 
 export default function SignIn() {
   const router = useRouter();
   const { setProvidedEmail } = useEmailStore();
+  const { setUser} = useUserStore()
   console.log(process.env.NEXT_PUBLIC_API_URL);
   const [userLoginDetail, setUserLoginDetail] = useState<any>({
     email: "",
@@ -50,8 +51,11 @@ export default function SignIn() {
         { email: userLoginDetail.email, password: userLoginDetail.password },
         { withCredentials: true }
       );
+      console.log(response, "The response")
       setProvidedEmail(userLoginDetail.email);
       router.push("/my-account");
+      const userInfo = response.data.data.user;
+      setUser(userInfo)
       toast.success("Login successful");
     } catch (error) {
         console.log(error, " The error is here")
