@@ -13,18 +13,22 @@ import { MdEdit } from "react-icons/md";
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
 import { userType } from "@/components/types/types";
- 
-export default function AccountDetails() {
+import { BounceLoader } from "react-spinners";
 
+export default function AccountDetails() {
   const router = useRouter();
   const [isEditable, setIsEditable] = useState(false);
-  const { user} = useUserStore();
+  const { user, setUser } = useUserStore();
   const [showPassword, setShowPassword] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const [myPic, setMyPic] = useState<string | undefined>(undefined)
-  const [userInfo, setUserInfo] = useState<userType | null>(user
-  );
-
+  const [myPic, setMyPic] = useState<string | undefined>(undefined);
+  const [userInfo, setUserInfo] = useState<any>({
+    fullName: user?.fullName,
+    email: user?.email,
+  });
+  const [error, setError] = useState<string | any>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  console.log("The user", user);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -33,61 +37,51 @@ export default function AccountDetails() {
     setIsEditable(!isEditable); // Toggle between read-only and editable
   };
 
-   
+  const editUserInfo = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const userId = user?._id;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-           
-    const file = e.target.files?.[0];
-    if (file) {
-      setFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          setMyPic(reader.result);
+      const response = await api.patch(
+        `/auth/updateMe`,
+        { newFullName: userInfo.fullName, newEmail: userInfo.email },
+        {
+          withCredentials: true,
         }
-      };
-      reader.readAsDataURL(file);
-          }
-          
-  };
-  
-            
-      
-      const handleFileUpload = async () => {
-              
-      if (!file) return;
-  
-      const formData = new FormData();
-      formData.append("images", file);
-  
-              try {
-          
-       await api.patch(
-              `/user/updateProfilePic/${"user?._id"}`,
-           formData,
-           {
-              headers: { "Content-Type": "multipart/form-data"},
-              withCredentials: true
-           });
-                  
-          toast.success("Profile picture updated successfully");
-              } catch (error) {
-                   
-                  toast.error("An error occurred during profile picture update");
-                  
+      );
+      const userResponse = response.data.data.user;
+      setUser(userResponse);
+      setIsEditable(false);
+      setError("");
+      toast.success("Profile updated successfully.");
+    } catch (error) {
+      console.log(error, " The error is here");
+      if (error instanceof Error) {
+        setError("An error occured. Please try again.");
+      } else {
+        setError("An unexpected error occurred");
       }
+      toast.error("An error occured. please try again");
+    } finally {
+      setLoading(false);
+    }
   };
-  
 
   return (
     <>
-      <DesktopNav/>
-      <MobileNav/>
+      {loading && (
+        <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
+          <BounceLoader color="#0000FF" size={100} />
+        </div>
+      )}
+      <DesktopNav />
+      <MobileNav />
       <div className="grid grid-cols-1 my-[150px] gap-[30px] lg:grid-cols-4 px-[20px] ">
         <ProfileSideNavBar />
         <div className="  p-4 lg:col-span-3">
           <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
-          edit My profile
+            edit My profile
           </h1>
 
           {/* User Avatar and Buttons */}
@@ -146,7 +140,10 @@ export default function AccountDetails() {
               </div>
 
               {/* Form Fields */}
-              <form className="flex flex-col gap-[20px] ">
+              <form
+                onSubmit={editUserInfo}
+                className="flex flex-col gap-[20px] "
+              >
                 <div className="grid grid-cols-1 gap-5">
                   <div className="flex flex-col gap-[10px] ">
                     <label className="block uppercase text-[#404040] leading-[11.72px] font-[500] text-[10px] ">
@@ -171,7 +168,6 @@ export default function AccountDetails() {
                       readOnly={!isEditable}
                     />
                   </div>
-                
                 </div>
 
                 <div className="flex flex-col gap-[10px] ">
@@ -197,10 +193,15 @@ export default function AccountDetails() {
                     readOnly={!isEditable}
                   />
                 </div>
-
+                {error && (
+                  <p className="text-red-500 text-[10px] capitalize">{error}</p>
+                )}
                 {isEditable && (
-                  <button className="bg-[#0000FF] text-white font-[500] py-[10px] px-[24px] w-fit rounded-[8px]  ">
-                    Save Change
+                  <button
+                    type="submit"
+                    className="bg-[#0000FF] text-white font-[500] py-[10px] px-[24px] w-fit rounded-[8px]  "
+                  >
+                    {loading ? "Saving Changes" : "Save Change"}
                   </button>
                 )}
               </form>
