@@ -69,7 +69,7 @@ export default function AccountDetails() {
 
       router.push("/auth/signin");
     } catch (error: any) {
-      console.log(error, " The error is here");
+     
 
       setError(error?.response?.data?.message);
       toast.error(error?.response?.data?.message);
