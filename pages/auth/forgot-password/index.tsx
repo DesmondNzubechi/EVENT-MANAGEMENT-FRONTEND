@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { api } from "@/components/lib/api";
 import { toast } from 'react-toastify'
 import { AuthPage } from "@/components/authPage/authPage";
+import { HashLoader } from "react-spinners";
 
 export default function ForgotPassword() {
 
@@ -38,23 +39,30 @@ export default function ForgotPassword() {
         }
 
         setLoading(true);
- 
-
         try {
          
-            await api.post('/user/forgotPassword', { email })
+            await api.post('/auth/forgotPassword', { email })
             
             toast.success("Rest password link has been sent to your. Kindly check")
             setLoading(false)
-        } catch (error) {
+        } catch (error: any) {
             
-            toast.error("An error occured. Please try again")
+            toast.error(error.response.data.message)
+            console.log(error, " the error")
+            setLoading(false)
+        } finally {
             setLoading(false)
         }
 
     }
      
-    return <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
+    return <>
+          {loading && (
+        <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
+          <HashLoader color="#0000FF" size={100} />
+        </div>
+      )}
+    <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
    <AuthPage/>
         <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
             <div className='flex flex-col justify-center  text-center gap-2 mb-[20px] '>
@@ -73,4 +81,5 @@ export default function ForgotPassword() {
             </form>
         </div>
     </div>
+    </>
 }
