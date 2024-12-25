@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
 import { AuthPage } from "@/components/authPage/authPage";
+import { HashLoader } from "react-spinners";
 
 export default function ResetPassword() { 
 
@@ -42,7 +43,7 @@ export default function ResetPassword() {
         setLoading(true)
         try {
 
-            await api.patch(`/user/resetPassword/${token}`, {
+            await api.patch(`/auth/resetPassword/${token}`, {
                 password,
                 confirmPassword
             });
@@ -50,15 +51,20 @@ export default function ResetPassword() {
             toast.success("Reset password successful. Login with your new password.")
             setLoading(false)
 
-            router.push('/signin')
-            
+            router.push('/auth/signin')
         } catch (error) {
-            toast.error("An error occured. Please try again")
+            toast.error("An error occured or token expired. Please try again")
+        } finally {
             setLoading(false)
         }
     }
     
     return <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
+          {loading && (
+        <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
+          <HashLoader color="#0000FF" size={100} />
+        </div>
+      )}
 <AuthPage/>
         <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
         <div className='flex flex-col justify-center  text-center gap-2 mb-[20px] '>
