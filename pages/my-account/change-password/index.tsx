@@ -15,6 +15,7 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { Footer } from "@/components/Footer/footer";
 
 export default function AccountDetails() {
+  const {user} = useUserStore()
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [currentPassword, setCurrentPassword] = useState<string>("");
@@ -77,6 +78,13 @@ export default function AccountDetails() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      toast.error("You are not login.")
+      router.push("/auth/signin")
+    }
+  }, [])
 
   return (
     <>

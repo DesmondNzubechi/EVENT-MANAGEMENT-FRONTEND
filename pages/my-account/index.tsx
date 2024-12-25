@@ -19,10 +19,16 @@ export default function AccountDetails() {
   const {user} = useUserStore()
 
   const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      toast.error("You are not login.")
+      router.push("/auth/signin")
+    }
+  }, [])
   return (
 
     <>
-      { !user? <SignIn/>:
+      {
       <div>
       <DesktopNav/>
       <MobileNav/>

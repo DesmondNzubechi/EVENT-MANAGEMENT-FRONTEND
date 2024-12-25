@@ -41,7 +41,6 @@ export default function AccountDetails() {
     e.preventDefault();
     setLoading(true);
     try {
-      const userId = user?._id;
 
       const response = await api.patch(
         `/auth/updateMe`,
@@ -67,6 +66,13 @@ export default function AccountDetails() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      toast.error("You are not login.")
+      router.push("/auth/signin")
+    }
+  }, [])
 
   return (
     <>
