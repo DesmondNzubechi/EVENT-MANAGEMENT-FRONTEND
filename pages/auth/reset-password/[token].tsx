@@ -3,12 +3,13 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import signImg from '../../public/images/login1.avif'
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
 import { AuthPage } from "@/components/authPage/authPage";
 import { HashLoader } from "react-spinners";
+import { useUserStore } from "@/components/store/store";
 
 export default function ResetPassword() { 
 
@@ -58,6 +59,16 @@ export default function ResetPassword() {
             setLoading(false)
         }
     }
+
+    
+    const { user } = useUserStore();
+  
+    useEffect(() => {
+        if (user) {
+        router.push("/my-account")
+      }
+    }, [])
+     
     
     return <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
           {loading && (

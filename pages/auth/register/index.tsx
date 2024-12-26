@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AuthPage } from "@/components/authPage/authPage";
 import { BounceLoader } from "react-spinners";
@@ -120,6 +120,15 @@ const Register = () => {
       setLoading(false);
     }
   };
+
+  
+  const { user } = useUserStore();
+  useEffect(() => {
+      if (user) {
+      router.push("/my-account")
+    }
+  }, [])
+   
 
   return (
     <>

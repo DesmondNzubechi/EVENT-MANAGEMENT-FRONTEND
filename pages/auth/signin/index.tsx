@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { api } from "@/components/lib/api";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BounceLoader } from "react-spinners";
@@ -69,6 +69,14 @@ export default function SignIn() {
     }
   };
 
+  
+  const { user } = useUserStore();
+  useEffect(() => {
+      if (user) {
+      router.push("/my-account")
+    }
+  }, [])
+   
   return (
     <div className="grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  ">
       {loading && (

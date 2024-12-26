@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
 import { AuthPage } from "@/components/authPage/authPage";
@@ -13,11 +13,12 @@ export default function VerifyEmail() {
   const { providedEmail } = useEmailStore();
   const [verificationCode, setVerificationCode] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const {user } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingResend, setLoadingResend] = useState<boolean>(false);
   const router = useRouter();
-console.log("The email", providedEmail)
-  const verifyUserEmail = async (e: any) => {
+
+  const verifyUserEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     if (
       !verificationCode ||
@@ -36,39 +37,40 @@ console.log("The email", providedEmail)
       toast.success("Email successfully verified. Kindly login now");
       router.push("/auth/signin");
     } catch (error: any) {
-        console.log("The verification error", error)
-        const theErr = error!.response?.data?.message
+      const theErr = error!.response?.data?.message;
       toast.error(theErr);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
-  const resendVerificationToken = async (e: any) => {
+  const resendVerificationToken = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setLoadingResend(true);
 
     try {
-      await api.patch(
-        "/auth/sendVerificationCode",
-        { email: providedEmail }
-      );
+      await api.patch("/auth/sendVerificationCode", { email: providedEmail });
 
       toast.success(
         "Verification code successfully resent. Kindly check your email"
       );
     } catch (error) {
-        toast.error("An error occured. Please try again");
-        console.log(error, "The error is here")
+      toast.error("An error occured. Please try again");
     } finally {
       setLoadingResend(false);
     }
   };
 
+  useEffect(() => {
+    if (user) {
+    router.push("/my-account")
+  }
+}, [])
+
   return (
     <div className="grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  ">
-         {loading && (
+      {loading && (
         <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
           <HashLoader color="#0000FF" size={100} />
         </div>
@@ -94,9 +96,9 @@ console.log("The email", providedEmail)
             </label>
             <input
               name="verificationCode"
-                          value={verificationCode}
-                          maxLength={4}
-                          minLength={4}
+              value={verificationCode}
+              maxLength={4}
+              minLength={4}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setVerificationCode(e.target.value)
               }

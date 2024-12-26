@@ -3,11 +3,13 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import signImg from '../../public/images/login1.avif'
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api } from "@/components/lib/api";
 import { toast } from 'react-toastify'
 import { AuthPage } from "@/components/authPage/authPage";
 import { HashLoader } from "react-spinners";
+import { useUserStore } from "@/components/store/store";
+import { useRouter } from "next/router";
 
 export default function ForgotPassword() {
 
@@ -55,6 +57,13 @@ export default function ForgotPassword() {
         }
 
     }
+    const { user } = useUserStore();
+    const router = useRouter();
+    useEffect(() => {
+        if (user) {
+        router.push("/my-account")
+      }
+    }, [])
      
     return <>
           {loading && (
