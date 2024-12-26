@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { EventType, userType } from "../types/types";
+import { BookingType, EventType, userType } from "../types/types";
 
 interface userState {
   user: userType | null;
@@ -64,3 +64,22 @@ export const useEventStore = create(
   )
 );
 
+
+interface bookedEventState {
+  bookedEvent: BookingType[] | null;
+  setBookedEvent: (bookedEvent: bookedEventState["bookedEvent"]) => void;
+}
+
+// Persisted Booked Event Store
+export const useBookedEventStore = create(
+  persist<bookedEventState>(
+    (set: any) => ({
+      bookedEvent: null,
+      setBookedEvent: (bookedEvent: any) => set({ bookedEvent }),
+    }),
+    {
+      name: "bookedEvent",
+    
+    }
+  )
+);

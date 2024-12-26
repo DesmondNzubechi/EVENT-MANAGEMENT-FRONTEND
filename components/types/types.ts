@@ -23,4 +23,15 @@ export interface EventType {
     availableTicket: number;
     image: string | any;
 }
+
+export interface BookingType {
+    _id: string
+    event: EventType
+    paymentStatus: string
+    ticketQuantity: number
+    dateBooked: Date
+    paymentReference: string
+    dateConfirmed: Date
+    receiptUrl: string
+  }
   
