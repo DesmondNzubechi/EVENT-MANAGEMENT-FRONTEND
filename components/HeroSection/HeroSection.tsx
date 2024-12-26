@@ -26,7 +26,7 @@ export const HeroSection = () => {
 <div className='relative z-[2] flex flex-col justify-center items-center gap-[30px] '>
           <h1 className='text-[24px] text-[#FFFFFF] capitalize font-[500] leading-[27px] text-center '>Plan, Book, and Celebrate – All in One Place</h1>
           <p className='text-[20px] max-w-[700px] text-slate-50 font-[500] leading-[27px] text-center '>Your ultimate platform for seamless event management and hassle-free bookings. Discover venues, manage guests, and book services with ease.</p>
-          <div className='flex items-center mt-[30px] gap-[20px]  '>
+          <div className='flex items-center m:flex-row flex-colmt-[30px] gap-[20px]  '>
             
             <Link href='/auth/signin' className='flex items-center p-[10px] gap-[5px] rounded-[6px] text-[#FFFFFF] bg-slate-900 hover:bg-slate-700 '>Get Started Today</Link>
     <Link href='' className='flex items-center p-[10px] gap-[5px] rounded-[6px] hover:bg-slate-100 bg-[#FFFFFF] text-slate-900 '>
