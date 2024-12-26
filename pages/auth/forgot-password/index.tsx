@@ -77,7 +77,7 @@ export default function ForgotPassword() {
             
                 <button type="submit" disabled={loading} className='bg-blue-700  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Submitting..." : "Submit email"}</button>
 
-                <Link href="/signin" className="text-textTitle hover:text-btn-primary">Remember password?</Link>
+                <Link href="/auth/signin" className="text-textTitle hover:text-btn-primary">Remember password?</Link>
             </form>
         </div>
     </div>

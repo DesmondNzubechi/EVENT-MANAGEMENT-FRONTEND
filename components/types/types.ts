@@ -13,6 +13,7 @@ export interface userType {
 
 
 export interface EventType {
+    _id: string;
     title: string;
     description: string;
     date: string;
@@ -21,4 +22,5 @@ export interface EventType {
     totalTicket: number;
     availableTicket: number;
     image: string | any;
-  }
+}
+  

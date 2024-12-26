@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { userType } from "../types/types";
+import { EventType, userType } from "../types/types";
 
 interface userState {
   user: userType | null;
@@ -38,6 +38,27 @@ export const useEmailStore = create(
     }),
     {
       name: "providedEmail",
+    
+    }
+  )
+);
+
+
+
+interface eventState {
+  event: EventType[] | null;
+  setEvent: (event: eventState["event"]) => void;
+}
+
+// Persisted Event Store
+export const useEventStore = create(
+  persist<eventState>(
+    (set: any) => ({
+      event: null,
+      setEvent: (event: any) => set({ event }),
+    }),
+    {
+      name: "event",
     
     }
   )
