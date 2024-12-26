@@ -50,7 +50,7 @@ const EventCard = ({ event }: { event: EventType }) => {
         { withCredentials: true }
       );
       const bookingResponse = response.data.data.data;
-      const paymentLink = response.data.paymentUrl;
+      const paymentLink = response.data.data.paymentUrl;
       router.push(paymentLink);
       console.log("The response", bookingResponse);
     } catch (error) {
@@ -72,7 +72,7 @@ const EventCard = ({ event }: { event: EventType }) => {
       )}
       {modalVisible && (
         <EventModal
-          event={clickedEvent}
+          event={event}
           setEventModalVisible={setEventModalVisible}
         />
       )}
@@ -121,7 +121,7 @@ const EventCard = ({ event }: { event: EventType }) => {
           <button
             disabled={loading}
             className="bg-[#FFFFFF] border border-[#0000FF] rounded-[8px] py-[10px] px-[16px] text-[#0000FF] font-medium"
-            onClick={() => fetchAnEventData(event._id)}
+            onClick={() => setEventModalVisible(true)}
           >
             {loading ? "viewing Event" : " View Details"}
           </button>

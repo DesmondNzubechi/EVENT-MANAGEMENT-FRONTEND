@@ -4,6 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { EventType } from "../types/types";
 import { IoLocationOutline } from "react-icons/io5";
+import { useRouter } from "next/router";
+import { api } from "../lib/api";
+import { toast } from "react-toastify";
+import { HashLoader } from "react-spinners";
 
 
 
@@ -15,7 +19,8 @@ interface EventModalProps {
 export default function EventModal(props: EventModalProps) {
   const { setEventModalVisible, event } = props;
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
   // Image slider handlers
   const handleNextImage = () => {
     setCurrentImageIndex(
@@ -30,7 +35,37 @@ export default function EventModal(props: EventModalProps) {
     );
   };
 
+  
+  const BookAnEventData = async (id: string) => {
+    setLoading(true);
+    try {
+      const response = await api.post(
+        `/booking/bookEvent/${id}`,
+        {},
+        { withCredentials: true }
+      );
+      const bookingResponse = response.data.data.data;
+      const paymentLink = response.data.data.paymentUrl;
+      router.push(paymentLink);
+      console.log("The response", bookingResponse);
+    } catch (error) {
+      toast.error(
+        "An error occured while trying to view this event. Please try again."
+      );
+      console.log("The error is here", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
+    <>
+        {loading && (
+        <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
+          <HashLoader color="#0000FF" size={100} />
+        </div>
+      )}
     <div className="bg-[#071C1F99] z-[10000] no-scrollbar fixed w-full justify-center md:flex px-[20px] items-center py-[50px] top-0 bottom-0 left-0 right-0">
       <div className="flex bg-[#FFFFFF] left-0 right-0 w-full  max-w-[1200px] h-[90vh] no-scrollbar rounded-[10px] overflow-y-auto flex-col gap-5">
         <button
@@ -43,6 +78,7 @@ export default function EventModal(props: EventModalProps) {
           <h1 className="text-[20px] text-[#1A1A1A] leading-[24px] font-[500]">
             {event.title}
           </h1>
+          
         </div>
 
         <div className="flex flex-col bg-[#CBCAC74D] px-[20px] py-[20px] gap-[50px] md:justify-around md:flex-row">
@@ -78,14 +114,18 @@ export default function EventModal(props: EventModalProps) {
               <IoLocationOutline className="text-[#0000FF] text-[16px]" /> <span>{event.location}</span>
               </li>
               <li className="border-b p-[10px] flex justify-between items-center text-[#404040] font-[400] text-[14px]">
-                Tickets Available: <span>{event.availableTicket}</span>
+               Total Tickets: <span>{event.totalTicket}</span>
+              </li>
+              <li className="border-b p-[10px] flex justify-between items-center text-[#404040] font-[400] text-[14px]">
+               Available  Tickets: <span>{event.availableTicket}</span>
               </li>
               <li className="p-[10px] flex justify-between items-center text-[#404040] font-[400] text-[14px]">
-                Ticket Price: <span>{event.price}</span>
+                Ticket Price: <span>{event.price} NGN</span>
               </li>
             </ul>
             <button
-              type="button"
+                type="button"
+                onClick={() => BookAnEventData(event._id)}
               className="bg-[#0000FF] text-white font-[500] py-[10px] px-[24px] rounded-[8px]"
             >
               Buy Tickets
@@ -93,6 +133,7 @@ export default function EventModal(props: EventModalProps) {
           </section>
         </div>
       </div>
-    </div>
+      </div>
+      </>
   );
 }
