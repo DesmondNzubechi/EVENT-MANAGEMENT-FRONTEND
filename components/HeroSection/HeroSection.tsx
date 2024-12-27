@@ -37,7 +37,7 @@ export const HeroSection = () => {
               href="/auth/signin"
               className="flex items-center p-[10px] gap-[5px] md:text-[15px] text-[12px] rounded-[6px] text-[#FFFFFF] bg-slate-900 hover:bg-slate-700 "
             >
-              Get Started Today
+              Get Started
             </Link>
             <Link
               href="/events"
