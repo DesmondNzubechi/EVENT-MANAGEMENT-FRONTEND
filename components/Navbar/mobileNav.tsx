@@ -37,6 +37,7 @@ export const poppins = Poppins({
 });
   
 export const MobileNav = () => {
+  const [logOut, setLogOut] = useState(false)
     const { user } = useUserStore()
     const navItems = [
         {
@@ -119,11 +120,14 @@ export const MobileNav = () => {
     
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const toggleProfile = () => {
+  const toggleProfile = (e: React.FormEvent) => {
+e.preventDefault()
     setIsProfileOpen(!isProfileOpen);
   };
     
-    return (
+  return (
+    <>
+    { logOut && <LogOut logOut={logOut} setLogOut={setLogOut} />}
         <nav className={`${poppins.className} lg:hidden relative z-[10000]`}>
             <TfiArrowCircleUp onClick={scrollToTop} style={{
                     transition: "ease-in .7s",
@@ -182,10 +186,10 @@ export const MobileNav = () => {
                         ))}
                     </ul>
                    
-                    {!user ? 
+                    {user ? 
                         <div className="w-fit">
                    
-              <button onClick={toggleProfile} className="flex w-fit items-center w-full focus:outline-none">
+              <button onClick={toggleProfile} type="button" className="flex w-fit items-center w-full focus:outline-none">
                 <FaUser className="mr-3" />
                 <div>Profile</div>
                 {isProfileOpen ? <IoIosArrowUp className="ml-auto" /> : <IoIosArrowDown className="ml-auto" />}
@@ -198,7 +202,7 @@ export const MobileNav = () => {
                     })
                   }
                  
-                  <li className="text-red-500 font-[400] gap-[10px] text-[16px] leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</li>
+                  <button onClick={() => setLogOut(true)} type="button" className="text-red-500 font-[400] gap-[10px] text-[16px] leading-[18.75px] flex items-center"><MdLogout className="text-[16px] "/> Logout</button>
                 </ul>
               )}
             </div> :
@@ -219,6 +223,6 @@ export const MobileNav = () => {
                 </div>
             </span>
         </nav>
-
+</>
     )
 }

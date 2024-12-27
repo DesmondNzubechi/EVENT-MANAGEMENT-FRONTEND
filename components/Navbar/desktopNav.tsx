@@ -111,7 +111,7 @@ export const DesktopNav = () => {
                         ))}
                     </ul>
                     {user?  <div className="flex my-[20px] flex-row items-center gap-2">
-                <Link href='/auth/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
+                <Link href='/my-account' className="bg-slate-900 text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                    
                 </div> :
                     <div className="flex my-[20px] flex-row items-center gap-2">
