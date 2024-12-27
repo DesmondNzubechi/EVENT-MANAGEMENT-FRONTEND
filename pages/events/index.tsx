@@ -6,7 +6,6 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { Reviews } from "@/components/Reviews/reviews";
 import EventSkeletonLoader from "@/components/skeletonLoader/eventSkeletonLoader";
 import { useEventStore } from "@/components/store/store";
-import { events } from "@/components/theEvents/theEvents";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
