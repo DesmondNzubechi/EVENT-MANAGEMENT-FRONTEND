@@ -5,8 +5,6 @@ import { toast } from "react-toastify";
 import { AuthPage } from "@/components/authPage/authPage";
 import { useRouter } from "next/router";
 import { useEmailStore, useUserStore } from "@/components/store/store";
-import { AxiosError } from "axios";
-import { Error } from "mongoose";
 import { HashLoader } from "react-spinners";
 
 export default function VerifyEmail() {
