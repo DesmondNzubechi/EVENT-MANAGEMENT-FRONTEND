@@ -19,11 +19,14 @@ import { LuDownload } from "react-icons/lu";
 import Link from "next/link";
 import { BookingSkeleton } from "@/components/skeletonLoader/bookingSkeletonLoader";
 import { BookingType } from "@/components/types/types";
+import BookingModal from "@/components/modals/bookingModal";
 
-export default function AccountDetails() {
+export default function MyBookedEvent() {
 
   const router = useRouter();
   const {bookedEvent, setBookedEvent} = useBookedEventStore()
+  const [clickedBooking, setClickedBooking] = useState<BookingType | undefined>()
+  const [bookingModalVisible, setBookingModalVisible] = useState<boolean>(false)
 
 console.log("The booked events", bookedEvent)
   const [loading, setLoading] = useState<boolean>(false);
@@ -54,11 +57,7 @@ console.log("The booked events", bookedEvent)
 
   return (
     <>
-      {/* {loading && (
-        <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">
-          <HashLoader color="#FD830D" size={100} />
-        </div>
-      )} */}
+    {bookingModalVisible && <BookingModal booking={clickedBooking} setBookingModalVisible={setBookingModalVisible}/>}
       <DesktopNav />
       <MobileNav />
       <div className="grid grid-cols-1 my-[150px] gap-[50px] lg:grid-cols-4 px-[20px] ">
@@ -108,7 +107,7 @@ console.log("The booked events", bookedEvent)
                       </td>
                       <td className="p-[10px] flex flex-col text-[14px] text-[#1A1A1A] ">
                         {order.event.title}
-                        {/* <Image src={order.event.image} height={100} width={100} alt={`event image ${order.event.title}`} /> */}
+                     {/* <Image src={order.event.image} height={20} width={50} className="rounded-[10px]" alt={`event image ${order.event.title}`} />  */}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                         {order.event.date}
@@ -137,12 +136,16 @@ console.log("The booked events", bookedEvent)
                         >
                           <LuDownload className="text-gray-500 text-[14px] hover:text-blue-500 cursor-pointer" />
                         </Link>}
-                        <Link
-                          href="/vault/payment-history/hhdhgdgg"
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setBookingModalVisible(true)
+                            setClickedBooking(order)
+                          }}
                           className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
                         >
-                          <IoIosArrowForward className="text-gray-500 text-[14px]  hover:text-green-500 cursor-pointer" />
-                        </Link>
+                          <FiEye className="text-gray-500 text-[14px]  hover:text-green-500 cursor-pointer" />
+                        </button>
                       </td>
                     </tr>
                   ))
