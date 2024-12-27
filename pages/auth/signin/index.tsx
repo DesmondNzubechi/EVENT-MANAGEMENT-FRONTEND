@@ -11,7 +11,7 @@ export default function SignIn() {
   const router = useRouter();
   const { setProvidedEmail } = useEmailStore();
   const { setUser} = useUserStore()
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+
   const [userLoginDetail, setUserLoginDetail] = useState<any>({
     email: "",
     password: "",
@@ -86,7 +86,7 @@ export default function SignIn() {
       )}
       <AuthPage />
       <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
-        <div className="flex flex-col justify-center  text-center gap-2 mb-[20px] ">
+        <div className="flex flex-col justify-center  text-start gap-2 mb-[20px] ">
           <h1 className="font-[700] text-[32px] leading-[39.97px] text-[#111111] ">
             Sign In To Your Account
           </h1>
@@ -151,13 +151,13 @@ export default function SignIn() {
           </Link>
         </form>
 
-        <div className="flex items-center  justify-center ">
+        <div className="flex items-center md:flex-row flex-col  justify-center ">
           <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[12px] ">
             Don't have an account yet?
           </h1>
           <Link
             href="/auth/register"
-            className=" text-[12px] w-fit text-btn-primary  font-[400]  hover:text-[#666666]"
+            className=" text-[12px] w-fit text-blue-500  font-[400]  hover:text-[#666666]"
           >
             create an account
           </Link>
