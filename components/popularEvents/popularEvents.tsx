@@ -1,7 +1,8 @@
-import { events } from "../theEvents/theEvents";
 import EventCard from "../eventCard/eventCard";
+import { useEventStore } from "../store/store";
 
 export const PopularEvents = () => {
+  const {event} = useEventStore()
 
   return (
       <>
@@ -16,7 +17,7 @@ export const PopularEvents = () => {
           </h1>
         </div>
         <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
-          {events.slice(0, 3).map((event) => (
+          {event?.slice(0, 3).map((event) => (
             <EventCard event={event} />
           ))}
         </div>

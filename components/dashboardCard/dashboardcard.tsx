@@ -1,6 +1,4 @@
 import React from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
 const DashboardCard = ({ title, value, icon }: { title: string, value: number | string | undefined,  color:string, icon: any }) => {
   return (
