@@ -29,7 +29,7 @@ export interface BookingType {
     event: EventType
     paymentStatus: string
     ticketQuantity: number
-    dateBooked: Date
+    dateBooked: Date | string | any
     paymentReference: string
     dateConfirmed: Date
     receiptUrl: string

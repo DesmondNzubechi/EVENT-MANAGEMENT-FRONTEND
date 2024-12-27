@@ -18,6 +18,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { LuDownload } from "react-icons/lu";
 import Link from "next/link";
 import { BookingSkeleton } from "@/components/skeletonLoader/bookingSkeletonLoader";
+import { BookingType } from "@/components/types/types";
 
 export default function AccountDetails() {
 
@@ -48,40 +49,6 @@ console.log("The booked events", bookedEvent)
   useEffect(() => {
     fetchUserBookedEvent();
   }, []);
-  const data = [
-    {
-      id: "#0023",
-      eventName: "Tech Submit",
-      eventDate: "Dec 24, 2024, 10:30AM",
-      ticketPrice: "₦50,000",
-      date: "Aug 10, 2024, 10:30AM",
-      status: "Confirmed",
-    },
-    {
-      id: "#0023",
-      eventName: "Tech Submit",
-      eventDate: "Dec 24, 2024, 10:30AM",
-      ticketPrice: "₦50,000",
-      date: "Aug 10, 2024, 10:30AM",
-      status: "Pending",
-    },
-    {
-      id: "#0023",
-      eventName: "Tech Submit",
-      eventDate: "Dec 24, 2024, 10:30AM",
-      ticketPrice: "₦50,000",
-      date: "Aug 10, 2024, 10:30AM",
-      status: "Confirmed",
-    },
-    {
-      id: "#0023",
-      eventName: "Tech Submit",
-      eventDate: "Dec 24, 2024, 10:30AM",
-      ticketPrice: "₦50,000",
-      date: "Aug 10, 2024, 10:30AM",
-      status: "Pending",
-    },
-  ];
 
   useEffect(() => {}, []);
 
@@ -134,41 +101,42 @@ console.log("The booked events", bookedEvent)
                 {loading ? (
                   <BookingSkeleton />
                 ) : (
-                  data.map((order, index) => (
+                  bookedEvent?.map((order : BookingType, index: number) => (
                     <tr key={index} className="border-b py-[8px] px-[6px] ">
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                        {order.id}
+                       0{index + 1}
+                      </td>
+                      <td className="p-[10px] flex flex-col text-[14px] text-[#1A1A1A] ">
+                        {order.event.title}
+                        {/* <Image src={order.event.image} height={100} width={100} alt={`event image ${order.event.title}`} /> */}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                        {order.eventName}
+                        {order.event.date}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                        {order.eventDate}
+                       N {order.event.price}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                        {order.ticketPrice}
-                      </td>
-                      <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                        {order.date}
+                      {new Date(order.dateBooked).toLocaleString()}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                         <span
                           className={`py-[4px] px-[12px] rounded-[5px] text-sm ${
-                            order.status === "Confirmed"
+                            order.paymentStatus === "Confirmed"
                               ? "bg-[#CFFFE691] text-[#0BD36D] "
                               : "bg-red-100 text-red-700 "
                           }`}
                         >
-                          {order.status}
+                          {order.paymentStatus}
                         </span>
                       </td>
                       <td className="py-2 px-4 flex space-x-2">
-                        <Link
+                      { order.paymentStatus !== "pending" && <Link
                           href=""
                           className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
                         >
                           <LuDownload className="text-gray-500 text-[14px] hover:text-blue-500 cursor-pointer" />
-                        </Link>
+                        </Link>}
                         <Link
                           href="/vault/payment-history/hhdhgdgg"
                           className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
