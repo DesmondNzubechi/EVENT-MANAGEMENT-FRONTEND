@@ -40,30 +40,22 @@ export const MobileNav = () => {
   const [logOut, setLogOut] = useState(false)
     const { user } = useUserStore()
     const navItems = [
-        {
-            name: "home",
-            url : "/"
-        },
-        {
-            name: "property",
-            url : "/properties"
-        },
-        {
-            name: "land",
-            url : "/land"
-        },
-        {
-            name: "blog",
-            url : "/blog"
-        },
-        {
-            name: "about",
-            url : "/about"
-        },
-        {
-            name: "contact",
-            url : "/contact-us"
-        },
+      {
+        name: "home",
+        url : "/"
+    },
+    {
+        name: "events",
+        url : "/events"
+    },
+    {
+        name: "about",
+        url : "/about"
+    },
+    {
+        name: "contact",
+        url : "/contact-us"
+    },
     ]
 
     const [navState, setNavState] = useState<string>("left-[-2000px]")
