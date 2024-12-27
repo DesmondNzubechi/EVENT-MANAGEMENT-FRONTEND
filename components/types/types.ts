@@ -33,5 +33,6 @@ export interface BookingType {
     paymentReference: string
     dateConfirmed: Date
     receiptUrl: string
+    user: string
   }
   

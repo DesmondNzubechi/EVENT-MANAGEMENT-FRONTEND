@@ -53,10 +53,10 @@ export default function SignIn() {
       );
       console.log(response, "The response")
       setProvidedEmail(userLoginDetail.email);
-      router.push("/my-account");
       const userInfo = response.data.data.user;
       setUser(userInfo)
       toast.success("Login successful");
+        router.push("/my-account");
     } catch (error) {
         console.log(error, " The error is here")
       if (error instanceof Error) {
