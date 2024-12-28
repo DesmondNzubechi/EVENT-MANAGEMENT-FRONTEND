@@ -11,7 +11,6 @@ import { SiEventbrite } from "react-icons/si";
 import { api } from "../lib/api";
 import { useEffect, useState } from "react";
 import { useBookedEventStore, useEventStore } from "../store/store";
-import { BookingType } from "../types/types";
 
 export const Footer = () => {
   const { setEvent, event } = useEventStore();
@@ -55,7 +54,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-transparent relative">
+    <div className="bg-transparent relative mb-[-50px]">
       <div className="text-slate-300 flex flex-col gap-5  bg-blue-900 px-[20px] py-[50px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px]">
           <div className="flex flex-col lg:col-span-2 gap-1">

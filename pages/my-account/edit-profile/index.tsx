@@ -54,14 +54,9 @@ export default function AccountDetails() {
       setIsEditable(false);
       setError("");
       toast.success("Profile updated successfully.");
-    } catch (error) {
-      console.log(error, " The error is here");
-      if (error instanceof Error) {
-        setError("An error occured. Please try again.");
-      } else {
-        setError("An unexpected error occurred");
-      }
-      toast.error("An error occured. please try again");
+    } catch (error: unknown | any) {
+
+      toast.error(error?.response.data?.message);
     } finally {
       setLoading(false);
     }

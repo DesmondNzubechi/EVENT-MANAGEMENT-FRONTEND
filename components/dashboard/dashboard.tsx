@@ -4,11 +4,12 @@ import { BsCalendar2EventFill } from "react-icons/bs";
 import { TbBrandBooking } from "react-icons/tb";
 import { MdVerified } from "react-icons/md";
 import { SiEventstore } from "react-icons/si";
-import { useEventStore, useUserStore } from "../store/store";
+import { useBookedEventStore, useEventStore, useUserStore } from "../store/store";
 import { useRouter } from "next/router";
 const DashboardMain = () => {
   const { event } = useEventStore()
   const { user } = useUserStore();
+  const {bookedEvent} = useBookedEventStore()
   const router = useRouter()
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const DashboardMain = () => {
         />
         <DashboardCard
           title="Booked Events"
-          value={0}
+          value={bookedEvent?.length}
           icon={<TbBrandBooking className="text-[70px] "/>}
         
           color="#F97316"

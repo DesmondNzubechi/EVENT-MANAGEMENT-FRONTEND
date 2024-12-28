@@ -22,13 +22,13 @@ import { BookingType } from "@/components/types/types";
 import BookingModal from "@/components/modals/bookingModal";
 
 export default function MyBookedEvent() {
+  const { bookedEvent, setBookedEvent } = useBookedEventStore();
+  const [clickedBooking, setClickedBooking] = useState<
+    BookingType | undefined
+  >();
+  const [bookingModalVisible, setBookingModalVisible] =
+    useState<boolean>(false);
 
-  const router = useRouter();
-  const {bookedEvent, setBookedEvent} = useBookedEventStore()
-  const [clickedBooking, setClickedBooking] = useState<BookingType | undefined>()
-  const [bookingModalVisible, setBookingModalVisible] = useState<boolean>(false)
-
-console.log("The booked events", bookedEvent)
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchUserBookedEvent = async () => {
@@ -40,10 +40,9 @@ console.log("The booked events", bookedEvent)
       });
       console.log("The response is here", response);
       const theBookings = response.data.data.data;
-      setBookedEvent(theBookings)
-    } catch (error) {
-      toast.error("An error occured. Please try again");
-      console.log(error, "The error is here");
+      setBookedEvent(theBookings);
+    } catch (error: unknown | any) {
+      toast.error(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -53,11 +52,14 @@ console.log("The booked events", bookedEvent)
     fetchUserBookedEvent();
   }, []);
 
-
-
   return (
     <>
-    {bookingModalVisible && <BookingModal booking={clickedBooking} setBookingModalVisible={setBookingModalVisible}/>}
+      {bookingModalVisible && (
+        <BookingModal
+          booking={clickedBooking}
+          setBookingModalVisible={setBookingModalVisible}
+        />
+      )}
       <DesktopNav />
       <MobileNav />
       <div className="grid grid-cols-1 my-[150px] gap-[50px] lg:grid-cols-4 px-[20px] ">
@@ -100,23 +102,23 @@ console.log("The booked events", bookedEvent)
                 {loading ? (
                   <BookingSkeleton />
                 ) : (
-                  bookedEvent?.map((order : BookingType, index: number) => (
+                  bookedEvent?.map((order: BookingType, index: number) => (
                     <tr key={index} className="border-b py-[8px] px-[6px] ">
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                       0{index + 1}
+                        0{index + 1}
                       </td>
                       <td className="p-[10px] flex flex-col text-[14px] text-[#1A1A1A] ">
                         {order.event.title}
-                     {/* <Image src={order.event.image} height={20} width={50} className="rounded-[10px]" alt={`event image ${order.event.title}`} />  */}
+                        {/* <Image src={order.event.image} height={20} width={50} className="rounded-[10px]" alt={`event image ${order.event.title}`} />  */}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                         {order.event.date}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                       N {order.event.price}
+                        N {order.event.price}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
-                      {new Date(order.dateBooked).toLocaleString()}
+                        {new Date(order.dateBooked).toLocaleString()}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                         <span
@@ -130,17 +132,19 @@ console.log("The booked events", bookedEvent)
                         </span>
                       </td>
                       <td className="py-2 px-4 flex space-x-2">
-                      { order.paymentStatus !== "pending" && <Link
-                          href=""
-                          className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
-                        >
-                          <LuDownload className="text-gray-500 text-[14px] hover:text-blue-500 cursor-pointer" />
-                        </Link>}
+                        {order.paymentStatus !== "pending" && (
+                          <Link
+                            href=""
+                            className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
+                          >
+                            <LuDownload className="text-gray-500 text-[14px] hover:text-blue-500 cursor-pointer" />
+                          </Link>
+                        )}
                         <button
                           type="button"
                           onClick={() => {
-                            setBookingModalVisible(true)
-                            setClickedBooking(order)
+                            setBookingModalVisible(true);
+                            setClickedBooking(order);
                           }}
                           className="border-[1px] border-[#CBCAC780] p-2 rounded-[4px]  "
                         >
