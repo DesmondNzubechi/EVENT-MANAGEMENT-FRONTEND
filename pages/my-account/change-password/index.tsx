@@ -1,8 +1,5 @@
-import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
-import { FiEdit, FiEye, FiEyeOff } from "react-icons/fi";
-import userImg from "../../../public/IMAGES/user.jpg";
-import { RxPencil1 } from "react-icons/rx";
+import {FiEye, FiEyeOff } from "react-icons/fi";
 import ProfileSideNavBar from "@/components/sideNav/profileSideNav";
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
@@ -15,7 +12,7 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { Footer } from "@/components/Footer/footer";
 
 export default function AccountDetails() {
-  const {user} = useUserStore()
+  const { user } = useUserStore();
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [currentPassword, setCurrentPassword] = useState<string>("");
@@ -70,8 +67,6 @@ export default function AccountDetails() {
 
       router.push("/auth/signin");
     } catch (error: any) {
-     
-
       setError(error?.response?.data?.message);
       toast.error(error?.response?.data?.message);
     } finally {
@@ -81,10 +76,10 @@ export default function AccountDetails() {
 
   useEffect(() => {
     if (!user) {
-      toast.error("You are not login.")
-      router.push("/auth/signin")
+      toast.error("You are not login.");
+      router.push("/auth/signin");
     }
-  }, [])
+  }, []);
 
   return (
     <>

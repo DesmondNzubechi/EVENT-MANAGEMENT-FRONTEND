@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuDownload } from "react-icons/lu";
 import { MdKeyboardArrowLeft } from "react-icons/md";

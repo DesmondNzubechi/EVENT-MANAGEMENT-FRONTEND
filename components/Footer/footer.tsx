@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/images/logo2.png";
+
 import {
   FaLinkedin,
   FaTwitter,
@@ -15,7 +14,7 @@ import { useBookedEventStore, useEventStore } from "../store/store";
 export const Footer = () => {
   const { setEvent, event } = useEventStore();
   const [loading, setLoading] = useState<boolean>(false);
-  const {setBookedEvent } = useBookedEventStore();
+  const { setBookedEvent } = useBookedEventStore();
 
   const fetchEventData = async () => {
     setLoading(true);

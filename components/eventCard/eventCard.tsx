@@ -6,7 +6,7 @@ import { useState } from "react";
 import { api } from "../lib/api";
 import { toast } from "react-toastify";
 import { HashLoader } from "react-spinners";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const EventCard = ({ event }: { event: EventType }) => {
   const [modalVisible, setEventModalVisible] = useState<boolean>(false);
@@ -51,7 +51,7 @@ const EventCard = ({ event }: { event: EventType }) => {
       );
       const bookingResponse = response.data.data.data;
       const paymentLink = response.data.data.data.paymentUrl;
-     router.push(paymentLink);
+      router.push(paymentLink);
       console.log("The booking response is here", bookingResponse);
     } catch (error) {
       toast.error(
@@ -71,10 +71,7 @@ const EventCard = ({ event }: { event: EventType }) => {
         </div>
       )}
       {modalVisible && (
-        <EventModal
-          event={event}
-          setEventModalVisible={setEventModalVisible}
-        />
+        <EventModal event={event} setEventModalVisible={setEventModalVisible} />
       )}
       <div
         key={event?.title}

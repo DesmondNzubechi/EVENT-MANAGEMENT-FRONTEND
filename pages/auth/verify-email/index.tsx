@@ -11,7 +11,7 @@ export default function VerifyEmail() {
   const { providedEmail } = useEmailStore();
   const [verificationCode, setVerificationCode] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const {user } = useUserStore();
+  const { user } = useUserStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingResend, setLoadingResend] = useState<boolean>(false);
   const router = useRouter();
@@ -62,9 +62,9 @@ export default function VerifyEmail() {
 
   useEffect(() => {
     if (user) {
-    router.push("/my-account")
-  }
-}, [])
+      router.push("/my-account");
+    }
+  }, []);
 
   return (
     <div className="grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  ">

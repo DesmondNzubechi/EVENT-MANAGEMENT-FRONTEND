@@ -2,11 +2,10 @@ import EventCard from "../eventCard/eventCard";
 import { useEventStore } from "../store/store";
 
 export const PopularEvents = () => {
-  const {event} = useEventStore()
+  const { event } = useEventStore();
 
   return (
-      <>
-       
+    <>
       <div className="py-[50px] px-[30px] ">
         <div className="flex flex-col gap-5 justify-center mb-[50px] items-center text-center">
           <h2 className="bg-blue-700 text-white text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit ">

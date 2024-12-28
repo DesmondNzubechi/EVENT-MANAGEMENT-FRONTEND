@@ -1,14 +1,7 @@
 import React from "react";
 import HeroImg from "../../public/images/event1.avif";
 import Link from "next/link";
-import { TbTruckDelivery } from "react-icons/tb";
-import { MdChair } from "react-icons/md";
-import { MdPayments } from "react-icons/md";
-
-import { useContext } from "react";
 import { useUserStore } from "../store/store";
-import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa6";
 
 export const HeroSection = () => {
   const { user } = useUserStore();
@@ -34,7 +27,7 @@ export const HeroSection = () => {
           </p>
           <div className="flex items-center md:flex-row  mt-[30px] gap-[20px]  ">
             <Link
-              href="/auth/signin"
+              href={user ? "/events" : "/auth/signin"}
               className="flex items-center p-[10px] gap-[5px] md:text-[15px] text-[12px] rounded-[6px] text-[#FFFFFF] bg-slate-900 hover:bg-slate-700 "
             >
               Get Started

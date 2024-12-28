@@ -18,32 +18,27 @@ export const useUserStore = create(
     }),
     {
       name: "user",
-    
     }
   )
 );
 
-
 interface emailState {
-  providedEmail: string
-  setProvidedEmail: (providedEmail: emailState['providedEmail']) => void
+  providedEmail: string;
+  setProvidedEmail: (providedEmail: emailState["providedEmail"]) => void;
 }
 
 // Persisted User Store
 export const useEmailStore = create(
   persist<emailState>(
     (set: any) => ({
-      providedEmail: '',
-      setProvidedEmail: (providedEmail: string) => set({providedEmail}),
+      providedEmail: "",
+      setProvidedEmail: (providedEmail: string) => set({ providedEmail }),
     }),
     {
       name: "providedEmail",
-    
     }
   )
 );
-
-
 
 interface eventState {
   event: EventType[] | null;
@@ -59,11 +54,9 @@ export const useEventStore = create(
     }),
     {
       name: "event",
-    
     }
   )
 );
-
 
 interface bookedEventState {
   bookedEvent: BookingType[] | null;
@@ -79,7 +72,6 @@ export const useBookedEventStore = create(
     }),
     {
       name: "bookedEvent",
-    
     }
   )
 );

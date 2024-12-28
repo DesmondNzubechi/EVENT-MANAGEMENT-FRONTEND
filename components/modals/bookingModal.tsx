@@ -1,13 +1,9 @@
 import { HiXMark } from "react-icons/hi2";
-import { GrNext, GrPrevious } from "react-icons/gr";
 import Image from "next/image";
 import { useState } from "react";
 import { BookingType, EventType } from "../types/types";
 import { IoLocationOutline } from "react-icons/io5";
-import { useRouter } from "next/router";
-import { api } from "../lib/api";
-import { toast } from "react-toastify";
-import { HashLoader } from "react-spinners";
+
 import Link from "next/link";
 
 interface EventModalProps {
@@ -18,8 +14,7 @@ interface EventModalProps {
 export default function BookingModal(props: EventModalProps) {
   const { setBookingModalVisible, booking } = props;
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
-
+ 
   return (
     <>
       <div className="bg-[#071C1F99] z-[1000000] no-scrollbar fixed w-full justify-center md:flex px-[20px] items-center py-[50px] top-0 bottom-0 left-0 right-0">

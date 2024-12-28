@@ -1,5 +1,3 @@
-import Image from "next/image";
-import localFont from "next/font/local";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { HeroSection } from "@/components/HeroSection/HeroSection";
@@ -10,27 +8,25 @@ import { PopularEvents } from "@/components/popularEvents/popularEvents";
 import { Reviews } from "@/components/Reviews/reviews";
 
 export const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'], 
-  style: ['normal', 'italic'],
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export default function Home() {
   return (
     <>
-    <MobileNav />
-    <DesktopNav/>
-  <main
-    className={` overflow-x-hidden  ${poppins.className}`}
-      > 
+      <MobileNav />
+      <DesktopNav />
+      <main className={` overflow-x-hidden  ${poppins.className}`}>
         <div className="px-[20px] ">
-        <HeroSection /> 
+          <HeroSection />
         </div>
         <WhyChooseUs />
-        <PopularEvents/>
-        <Reviews/>
+        <PopularEvents />
+        <Reviews />
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

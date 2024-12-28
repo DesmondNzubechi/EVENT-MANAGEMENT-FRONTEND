@@ -1,25 +1,17 @@
-import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
-import { FiEdit, FiEye, FiEyeOff } from "react-icons/fi";
-import userImg from "../../../public/IMAGES/user.jpg";
-import { RxPencil1 } from "react-icons/rx";
+import { useEffect, useState } from "react";
+import { FiEye } from "react-icons/fi";
 import ProfileSideNavBar from "@/components/sideNav/profileSideNav";
-import { useBookedEventStore, useUserStore } from "@/components/store/store";
-import { useRouter } from "next/router";
-
 import { api } from "@/components/lib/api";
 import { toast } from "react-toastify";
-import { HashLoader } from "react-spinners";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { Footer } from "@/components/Footer/footer";
-import { IoIosArrowForward } from "react-icons/io";
-import { RiDeleteBinLine } from "react-icons/ri";
 import { LuDownload } from "react-icons/lu";
 import Link from "next/link";
 import { BookingSkeleton } from "@/components/skeletonLoader/bookingSkeletonLoader";
 import { BookingType } from "@/components/types/types";
 import BookingModal from "@/components/modals/bookingModal";
+import { useBookedEventStore } from "@/components/store/store";
 
 export default function MyBookedEvent() {
   const { bookedEvent, setBookedEvent } = useBookedEventStore();
@@ -69,8 +61,6 @@ export default function MyBookedEvent() {
           <h1 className="text-[16px] py-[10px] uppercase text-[#1A1A1A] mb-[20px] border-b-[1px]  font-[500] leading-[19.2px] ">
             my bookings
           </h1>
-
-          {/* User Avatar and Buttons */}
           <div className=" overflow-x-auto ">
             <table className=" overflow-x-scroll w-full rounded-[20px] border bg-white">
               <thead className="bg-[#EAF0FC4D] py-[5px] px-[6px] ">
@@ -109,7 +99,6 @@ export default function MyBookedEvent() {
                       </td>
                       <td className="p-[10px] flex flex-col text-[14px] text-[#1A1A1A] ">
                         {order.event.title}
-                        {/* <Image src={order.event.image} height={20} width={50} className="rounded-[10px]" alt={`event image ${order.event.title}`} />  */}
                       </td>
                       <td className="p-[10px] text-[14px] text-[#1A1A1A] ">
                         {order.event.date}

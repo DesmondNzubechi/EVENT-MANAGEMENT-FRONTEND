@@ -10,7 +10,7 @@ import { useEmailStore, useUserStore } from "@/components/store/store";
 export default function SignIn() {
   const router = useRouter();
   const { setProvidedEmail } = useEmailStore();
-  const { setUser} = useUserStore()
+  const { setUser } = useUserStore();
 
   const [userLoginDetail, setUserLoginDetail] = useState<any>({
     email: "",
@@ -35,7 +35,7 @@ export default function SignIn() {
     return true;
   };
 
-  const loginUser = async (e: any) => {
+  const loginUser = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setError("");
@@ -51,14 +51,14 @@ export default function SignIn() {
         { email: userLoginDetail.email, password: userLoginDetail.password },
         { withCredentials: true }
       );
-      console.log(response, "The response")
+      console.log(response, "The response");
       setProvidedEmail(userLoginDetail.email);
       const userInfo = response.data.data.user;
-      setUser(userInfo)
+      setUser(userInfo);
       toast.success("Login successful");
-        router.push("/my-account");
+      router.push("/my-account");
     } catch (error) {
-        console.log(error, " The error is here")
+      console.log(error, " The error is here");
       if (error instanceof Error) {
         setError("wrong email or password. Please try again.");
       } else {
@@ -69,14 +69,13 @@ export default function SignIn() {
     }
   };
 
-  
   const { user } = useUserStore();
   useEffect(() => {
-      if (user) {
-      router.push("/my-account")
+    if (user) {
+      router.push("/my-account");
     }
-  }, [])
-   
+  }, []);
+
   return (
     <div className="grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  ">
       {loading && (
