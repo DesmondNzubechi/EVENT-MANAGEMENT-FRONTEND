@@ -50,9 +50,9 @@ const EventCard = ({ event }: { event: EventType }) => {
         { withCredentials: true }
       );
       const bookingResponse = response.data.data.data;
-      const paymentLink = response.data.data.paymentUrl;
-      router.push(paymentLink);
-      console.log("The response", bookingResponse);
+      const paymentLink = response.data.data.data.paymentUrl;
+     router.push(paymentLink);
+      console.log("The booking response is here", bookingResponse);
     } catch (error) {
       toast.error(
         "An error occured while trying to view this event. Please try again."

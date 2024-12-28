@@ -22,7 +22,7 @@ export default function BookingModal(props: EventModalProps) {
 
   return (
     <>
-      <div className="bg-[#071C1F99] z-[10000] no-scrollbar fixed w-full justify-center md:flex px-[20px] items-center py-[50px] top-0 bottom-0 left-0 right-0">
+      <div className="bg-[#071C1F99] z-[1000000] no-scrollbar fixed w-full justify-center md:flex px-[20px] items-center py-[50px] top-0 bottom-0 left-0 right-0">
         <div className="flex bg-[#FFFFFF] left-0 right-0 w-full  max-w-[1200px] h-[90vh] no-scrollbar rounded-[10px] overflow-y-auto flex-col gap-5">
           <button
             onClick={() => setBookingModalVisible(false)}

@@ -120,7 +120,7 @@ e.preventDefault()
   return (
     <>
     { logOut && <LogOut logOut={logOut} setLogOut={setLogOut} />}
-        <nav className={`${poppins.className} lg:hidden relative z-[10000]`}>
+        <nav className={`${poppins.className} lg:hidden relative z-[100]`}>
             <TfiArrowCircleUp onClick={scrollToTop} style={{
                     transition: "ease-in .7s",
                     scrollBehavior : "smooth"

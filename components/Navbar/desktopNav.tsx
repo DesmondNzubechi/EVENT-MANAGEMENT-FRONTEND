@@ -76,7 +76,7 @@ export const DesktopNav = () => {
   }
 
     return (
-        <nav className={`${poppins.className} hidden lg:flex  relative z-[1000]`}>
+        <nav className={`${poppins.className} hidden lg:flex  relative z-[100]`}>
            <TfiArrowCircleUp onClick={scrollToTop} style={{
                     transition: "ease-in .7s",
                     scrollBehavior : "smooth"

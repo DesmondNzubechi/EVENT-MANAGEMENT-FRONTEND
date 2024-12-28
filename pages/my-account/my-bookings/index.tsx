@@ -53,7 +53,7 @@ console.log("The booked events", bookedEvent)
     fetchUserBookedEvent();
   }, []);
 
-  useEffect(() => {}, []);
+
 
   return (
     <>
