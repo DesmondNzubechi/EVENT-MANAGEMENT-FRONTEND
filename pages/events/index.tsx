@@ -31,6 +31,8 @@ const Events = () => {
     fetchEventData();
   }, []);
 
+  console.log("The events", event)
+
   return (
     <>
       <DesktopNav />

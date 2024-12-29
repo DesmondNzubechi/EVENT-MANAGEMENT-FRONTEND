@@ -89,10 +89,7 @@ export const Footer = () => {
               <Link className="text-slate-300 text-[15px]" href="/contact-us">
                 Contact Us
               </Link>
-              <Link className="text-slate-300 text-[15px]" href="/services">
-                Services
-              </Link>
-              <Link className="text-slate-300 text-[15px]" href="/blog">
+              <Link className="text-slate-300 text-[15px]" href="/events">
                 Events
               </Link>
             </div>

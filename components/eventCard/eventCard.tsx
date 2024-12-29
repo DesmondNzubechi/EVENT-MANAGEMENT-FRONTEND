@@ -54,9 +54,10 @@ const EventCard = ({ event }: { event: EventType }) => {
       router.push(paymentLink);
       console.log("The booking response is here", bookingResponse);
     } catch (error) {
-      toast.error(
-        "An error occured while trying to view this event. Please try again."
+      toast.info(
+        "Sorry, you cannot book this event at the moment. This feature is only available in the development environment, as the payment API is set up for testing purposes and not for production."
       );
+      
       console.log("The error is here", error);
     } finally {
       setLoading(false);
@@ -110,10 +111,11 @@ const EventCard = ({ event }: { event: EventType }) => {
         </div>
         <div className="flex flex-col gap-2">
           <button
+            disabled={loading}
             className="bg-[#0000FF] rounded-[8px] py-[10px] px-[16px] text-[#FFFFFF] font-medium"
             onClick={() => BookAnEventData(event._id)}
           >
-            {"Book Now"}
+            {loading? "Booking.." : "Book Now"}
           </button>
           <button
             disabled={loading}

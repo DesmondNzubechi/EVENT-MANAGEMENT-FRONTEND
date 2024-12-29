@@ -37,7 +37,7 @@ export default function BookingModal(props: EventModalProps) {
                 <Image
                   src={booking?.event.image}
                   alt={`Event Image ${currentImageIndex + 1}`}
-                  className="object-cover h-[400px] rounded-lg w-full"
+                  className="object-cover  rounded-lg w-full"
                   width={500}
                   height={500}
                 />

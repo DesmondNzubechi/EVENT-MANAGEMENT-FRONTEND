@@ -30,14 +30,15 @@ export default function EventModal(props: EventModalProps) {
         { withCredentials: true }
       );
       const bookingResponse = response.data.data.data;
-      const paymentLink = response.data.data.paymentUrl;
+      const paymentLink = response.data.data.data.paymentUrl;
       router.push(paymentLink);
-      console.log("The response", bookingResponse);
+
     } catch (error) {
-      toast.error(
-        "An error occured while trying to view this event. Please try again."
+      toast.info(
+        "Sorry, you cannot book this event at the moment. This feature is only available in the development environment, as the payment API is set up for testing purposes and not for production."
       );
-      console.log("The error is here", error);
+      
+    
     } finally {
       setLoading(false);
     }
@@ -104,6 +105,7 @@ export default function EventModal(props: EventModalProps) {
                 </li>
               </ul>
               <button
+                disabled={loading}
                 type="button"
                 onClick={() => {
                   if (!user) {
@@ -116,7 +118,7 @@ export default function EventModal(props: EventModalProps) {
                 }}
                 className="bg-[#0000FF] text-white font-[500] py-[10px] px-[24px] rounded-[8px]"
               >
-                Buy Tickets
+                {loading? "Buying..." : "Buy Tickets"}
               </button>
             </section>
           </div>
