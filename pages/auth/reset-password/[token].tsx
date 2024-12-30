@@ -48,8 +48,8 @@ export default function ResetPassword() {
       setLoading(false);
 
       router.push("/auth/signin");
-    } catch (error) {
-      toast.error("An error occured or token expired. Please try again");
+    } catch (error: unknown | any) {
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

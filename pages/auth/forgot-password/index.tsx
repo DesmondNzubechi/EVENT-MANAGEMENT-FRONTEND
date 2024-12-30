@@ -41,8 +41,6 @@ export default function ForgotPassword() {
       setLoading(false);
     } catch (error: any) {
       toast.error(error.response.data.message);
-      console.log(error, " the error");
-      setLoading(false);
     } finally {
       setLoading(false);
     }

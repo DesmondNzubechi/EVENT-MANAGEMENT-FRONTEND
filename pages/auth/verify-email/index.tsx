@@ -35,8 +35,7 @@ export default function VerifyEmail() {
       toast.success("Email successfully verified. Kindly login now");
       router.push("/auth/signin");
     } catch (error: any) {
-      const theErr = error!.response?.data?.message;
-      toast.error(theErr);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -53,8 +52,8 @@ export default function VerifyEmail() {
       toast.success(
         "Verification code successfully resent. Kindly check your email"
       );
-    } catch (error) {
-      toast.error("An error occured. Please try again");
+    } catch (error: any | unknown) {
+      toast.error(error.response.data.message);
     } finally {
       setLoadingResend(false);
     }

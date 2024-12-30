@@ -51,19 +51,14 @@ export default function SignIn() {
         { email: userLoginDetail.email, password: userLoginDetail.password },
         { withCredentials: true }
       );
-      console.log(response, "The response");
+
       setProvidedEmail(userLoginDetail.email);
       const userInfo = response.data.data.user;
       setUser(userInfo);
       toast.success("Login successful");
       router.push("/my-account");
-    } catch (error) {
-      console.log(error, " The error is here");
-      if (error instanceof Error) {
-        setError("wrong email or password. Please try again.");
-      } else {
-        setError("An unexpected error occurred");
-      }
+    } catch (error: unknown | any) {
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

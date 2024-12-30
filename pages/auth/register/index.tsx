@@ -101,21 +101,7 @@ const Register = () => {
         pauseOnHover: true,
       });
     } catch (error: any) {
-      console.log("The error is here", error);
-
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("An unexpected error occurred");
-      }
-      if (error?.response?.data?.message === "user already exist with email") {
-        toast.error("user already exist. Please login", {
-          hideProgressBar: true,
-          closeOnClick: true,
-          autoClose: 1000,
-          pauseOnHover: true,
-        });
-      }
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
